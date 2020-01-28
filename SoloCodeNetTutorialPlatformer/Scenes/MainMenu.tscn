@@ -1,0 +1,71 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Scripts/mainmenu.gd" type="Script" id=1]
+[ext_resource path="res://Sprites/platformer_sprites/Kenney Thick.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://Scripts/play.gd" type="Script" id=3]
+[ext_resource path="res://Scripts/quit.gd" type="Script" id=4]
+[ext_resource path="res://Sprites/cursor.png" type="Texture" id=5]
+[ext_resource path="res://Scripts/cursor.gd" type="Script" id=6]
+
+[sub_resource type="DynamicFont" id=1]
+size = 48
+font_data = ExtResource( 2 )
+
+[node name="MainMenu" type="CanvasLayer"]
+pause_mode = 2
+script = ExtResource( 1 )
+
+[node name="mainmenu" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" type="ColorRect" parent="mainmenu"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0.584314 )
+
+[node name="margins" type="MarginContainer" parent="mainmenu/background"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 50.0
+margin_top = 30.0
+margin_right = -50.0
+margin_bottom = -30.0
+
+[node name="interiorbox" type="VBoxContainer" parent="mainmenu/background/margins"]
+margin_left = 246.0
+margin_right = 678.0
+margin_bottom = 540.0
+size_flags_horizontal = 4
+size_flags_vertical = 5
+custom_constants/separation = 50
+alignment = 1
+
+[node name="play" type="Label" parent="mainmenu/background/margins/interiorbox"]
+margin_top = 191.0
+margin_right = 432.0
+margin_bottom = 245.0
+custom_fonts/font = SubResource( 1 )
+text = "Reprendre"
+align = 1
+script = ExtResource( 3 )
+
+[node name="quit" type="Label" parent="mainmenu/background/margins/interiorbox"]
+modulate = Color( 1, 1, 1, 0.313726 )
+margin_top = 295.0
+margin_right = 432.0
+margin_bottom = 349.0
+custom_fonts/font = SubResource( 1 )
+text = "Quitter"
+script = ExtResource( 4 )
+
+[node name="cursor" type="Sprite" parent="mainmenu/background/margins/interiorbox"]
+position = Vector2( -12.502, 69.4846 )
+scale = Vector2( 3.5, 3.5 )
+texture = ExtResource( 5 )
+script = ExtResource( 6 )
+
+[connection signal="play" from="mainmenu/background/margins/interiorbox/play" to="." method="_on_play_play"]

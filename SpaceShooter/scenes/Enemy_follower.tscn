@@ -1,0 +1,83 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://scripts/Enemy/enemy_int_follower.gd" type="Script" id=1]
+[ext_resource path="res://sprites/rectangle.png" type="Texture" id=2]
+
+[sub_resource type="Curve2D" id=1]
+
+bake_interval = 5.0
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, -0.259659, -1.02016, 0, 0, 0, 0, -38.9906, 36.3904, 0, 0, 0, 0, 23.5071, 47.3936, 0, 0, 0, 0, -35.4696, 88.3252, 0, 0, 0, 0, 26.588, 128.817, 0, 0, 0, 0, -26.227, 177.671, 0, 0, 0, 0, 24.3873, 204.518, 0, 0, 0, 0, -24.9272, 253.331, 0, 0, 0, 0, 23.5887, 285.674, 0, 0, 0, 0, -25.6623, 320.224, 0, 0, 0, 0, 18.443, 353.303, 0, 0, 0, 0, -23.0192, 385.566, 0, 0, 0, 0, 24.7838, 407.922 )
+}
+
+[sub_resource type="GDScript" id=2]
+
+resource_name = "path"
+script/source = "extends Path2D
+
+func _process(delta):
+	if $Follower.unit_offset >= 1:
+		queue_free()
+
+func _on_Enemy_got_killed():
+	queue_free()"
+_sections_unfolded = [ "Resource" ]
+
+[sub_resource type="RectangleShape2D" id=3]
+
+custom_solver_bias = 0.0
+extents = Vector2( 8.20496, 7.94725 )
+
+[node name="Path" type="Path2D"]
+
+self_modulate = Color( 0.5, 0.6, 1, 0.7 )
+position = Vector2( 100, -15 )
+curve = SubResource( 1 )
+script = SubResource( 2 )
+_sections_unfolded = [ "Transform" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Follower" type="PathFollow2D" parent="." index="0"]
+
+position = Vector2( -0.259659, -1.02016 )
+offset = 0.0
+h_offset = 0.0
+v_offset = 0.0
+rotate = false
+cubic_interp = true
+loop = false
+lookahead = 4.0
+_sections_unfolded = [ "Transform" ]
+
+[node name="Enemy" type="Area2D" parent="Follower" index="0" groups=[
+"enemy",
+]]
+
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+collision_layer = 2
+audio_bus_override = false
+audio_bus_name = "Master"
+script = ExtResource( 1 )
+_sections_unfolded = [ "Collision", "Transform" ]
+
+[node name="Sprite" type="Sprite" parent="Follower/Enemy" index="0"]
+
+rotation = 3.14159
+texture = ExtResource( 2 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Follower/Enemy" index="1"]
+
+shape = SubResource( 3 )
+
+[connection signal="area_entered" from="Follower/Enemy" to="Follower/Enemy" method="_on_Enemy_area_entered"]
+
+[connection signal="got_killed" from="Follower/Enemy" to="." method="_on_Enemy_got_killed"]
+
+

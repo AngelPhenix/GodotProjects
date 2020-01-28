@@ -1,0 +1,73 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Scripts/saw.gd" type="Script" id=1]
+[ext_resource path="res://Sprites/platformer_sprites/Enemys/saw_strip4.png" type="Texture" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 14.3896, 13.1103 )
+
+[sub_resource type="Animation" id=2]
+
+resource_name = "turn"
+length = 0.2
+loop = true
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3 ]
+}
+
+[node name="Saw" type="KinematicBody2D" index="0" groups=[
+"enemy",
+]]
+
+scale = Vector2( 2, 2 )
+input_pickable = false
+collision_layer = 4
+collision_mask = 11
+collision/safe_margin = 0.08
+script = ExtResource( 1 )
+_sections_unfolded = [ "Collision", "Transform" ]
+
+[node name="sprite" type="Sprite" parent="." index="0"]
+
+texture = ExtResource( 2 )
+hframes = 4
+_sections_unfolded = [ "Animation" ]
+
+[node name="shape" type="CollisionShape2D" parent="." index="1"]
+
+position = Vector2( -0.0944672, -1.88936 )
+shape = SubResource( 1 )
+
+[node name="anim" type="AnimationPlayer" parent="." index="2"]
+
+root_node = NodePath("..")
+autoplay = "turn"
+playback_process_mode = 1
+playback_default_blend_time = 0.0
+playback_speed = 0.5
+anims/turn = SubResource( 2 )
+blend_times = [  ]
+_sections_unfolded = [ "Playback Options" ]
+
+[node name="raycast" type="RayCast2D" parent="." index="3"]
+
+position = Vector2( 9, 0 )
+enabled = true
+exclude_parent = true
+cast_to = Vector2( 0, 15 )
+collision_mask = 1
+_sections_unfolded = [ "Transform" ]
+
+

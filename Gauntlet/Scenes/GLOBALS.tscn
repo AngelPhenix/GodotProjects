@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scripts/globals.gd" type="Script" id=1]
+[ext_resource path="res://Sounds/zombiedeath.wav" type="AudioStream" id=2]
+
+[node name="GLOBALS" type="Node"]
+script = ExtResource( 1 )
+
+[node name="zombie_hit" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 2 )
+volume_db = -18.0
+attenuation = 0.482968
+

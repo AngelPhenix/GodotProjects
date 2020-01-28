@@ -1,0 +1,34 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Scripts/World.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/Cursor.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Fonts/Kenney Blocks.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://Sounds/pop.wav" type="AudioStream" id=4]
+
+[sub_resource type="DynamicFont" id=1]
+size = 32
+font_data = ExtResource( 3 )
+
+[node name="World" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[node name="Cursor" parent="." instance=ExtResource( 2 )]
+
+[node name="Score" type="Label" parent="."]
+anchor_right = 1.0
+margin_left = 39.45
+margin_top = 12.95
+margin_right = 215.45
+margin_bottom = 60.95
+rect_scale = Vector2( 2, 2 )
+custom_fonts/font = SubResource( 1 )
+text = "Score : 0"
+align = 1
+
+[node name="Bubble_pop" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 4 )
+volume_db = -30.0
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

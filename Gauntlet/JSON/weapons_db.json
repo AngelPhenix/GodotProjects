@@ -1,0 +1,26 @@
+{
+	"rustic" : {
+		"png_path": "res://Sprites/Guns/01.png", 
+		"attack": "1",
+		"light_color" : "#a2f442f1",
+		"bullet_sprite" : "res://Sprites/Bullets/01.png"
+	},
+	"smoker" : {
+		"png_path": "res://Sprites/Guns/02.png", 
+		"attack": "3",
+		"light_color" : "#a22950d1",
+		"bullet_sprite" : "res://Sprites/Bullets/02.png"
+	},
+	"golden" : {
+		"png_path": "res://Sprites/Guns/03.png", 
+		"attack": "5",
+		"light_color" : "#a2ffea30",
+		"bullet_sprite" : "res://Sprites/Bullets/03.png"
+	},
+	"alienator" : {
+		"png_path": "res://Sprites/Guns/04.png", 
+		"attack": "10",
+		"light_color" : "#a930ff30",
+		"bullet_sprite" : "res://Sprites/Bullets/04.png"
+	}
+}

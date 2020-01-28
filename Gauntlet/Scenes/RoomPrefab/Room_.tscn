@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Tilesets/Floor.tres" type="TileSet" id=1]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends TileMap
+
+export var min_spawner: int = 0
+export var max_spawner: int = 0
+var spawner_number: int = 0"
+
+[node name="Room_" type="TileMap"]
+z_index = -2
+z_as_relative = false
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 16, 16 )
+format = 1
+script = SubResource( 1 )
+

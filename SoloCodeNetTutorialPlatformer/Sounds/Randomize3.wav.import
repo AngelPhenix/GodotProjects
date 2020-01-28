@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Randomize3.wav-66695885edba225e8fcad8d9e54ab77c.sample"
+
+[deps]
+
+source_file="res://Sounds/Randomize3.wav"
+dest_files=[ "res://.import/Randomize3.wav-66695885edba225e8fcad8d9e54ab77c.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

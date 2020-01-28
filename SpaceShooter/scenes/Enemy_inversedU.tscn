@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://scenes/Enemy_follower.tscn" type="PackedScene" id=1]
+[ext_resource path="res://sprites/flare.png" type="Texture" id=2]
+
+[sub_resource type="Curve2D" id=1]
+
+bake_interval = 5.0
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, -0.131207, -0.185187, 0, 0, 0.261953, -113.192, -0.777031, 113.526, 0, -114.841, 0, 0, 100.652, 113.611 )
+}
+
+[node name="Path" instance=ExtResource( 1 )]
+
+position = Vector2( 44.6012, -14.2939 )
+curve = SubResource( 1 )
+
+[node name="Follower" parent="." index="0"]
+
+position = Vector2( -0.131207, -0.185187 )
+
+[node name="Sprite" parent="Follower/Enemy" index="0"]
+
+texture = ExtResource( 2 )
+
+

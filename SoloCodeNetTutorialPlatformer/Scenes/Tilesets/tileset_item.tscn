@@ -1,0 +1,61 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Sprites/platformer_sprites/Coins/spawnable.png" type="Texture" id=1]
+
+[node name="Coins_tileset" type="Node2D" index="0"]
+
+[node name="x1" type="Sprite" parent="." index="0"]
+
+texture = ExtResource( 1 )
+hframes = 4
+region_enabled = true
+region_rect = Rect2( 0, 0, 32, 32 )
+_sections_unfolded = [ "Animation", "Offset", "Region" ]
+
+[node name="x10" type="Sprite" parent="." index="1"]
+
+position = Vector2( 64, 0 )
+texture = ExtResource( 1 )
+hframes = 4
+frame = 1
+region_enabled = true
+region_rect = Rect2( 0, 32, 32, 32 )
+_sections_unfolded = [ "Animation", "Offset", "Region" ]
+
+[node name="hp" type="Sprite" parent="." index="2"]
+
+position = Vector2( 0, 64 )
+texture = ExtResource( 1 )
+hframes = 4
+frame = 2
+region_enabled = true
+region_rect = Rect2( 32, 0, 32, 32 )
+_sections_unfolded = [ "Animation", "Region" ]
+
+[node name="mp" type="Sprite" parent="." index="3"]
+
+position = Vector2( 64, 64 )
+texture = ExtResource( 1 )
+hframes = 4
+frame = 3
+region_enabled = true
+region_rect = Rect2( 32, 32, 32, 32 )
+_sections_unfolded = [ "Region" ]
+
+[node name="grousk" type="Sprite" parent="." index="4"]
+
+position = Vector2( 128, 64 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 72, 6, 48, 50 )
+_sections_unfolded = [ "Region" ]
+
+[node name="saw" type="Sprite" parent="." index="5"]
+
+position = Vector2( 128, 0 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 128, 0, 64, 64 )
+_sections_unfolded = [ "Region" ]
+
+

@@ -1,0 +1,25 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Line2D
+
+# References to the two balls the line is connected to
+var ball0 : Object
+var ball1 : Object
+
+func _process(delta: float) -> void:
+	if is_instance_valid(ball0) && is_instance_valid(ball1):
+		# Changing point 0 and 1 position every frame for it to be at 
+		# the same position as the objects its \"connected\" to
+		set_point_position(0, ball0.position)
+		set_point_position(1, ball1.position)
+	# One of the balls has been deleted : Destroy the line
+	else:
+		ball0.dict.erase(ball1)
+		ball1.dict.erase(ball0)
+		queue_free()"
+
+[node name="Line" type="Line2D"]
+width = 2.0
+default_color = Color( 0, 0.00784314, 0.54902, 0.611765 )
+script = SubResource( 1 )

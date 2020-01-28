@@ -1,0 +1,25 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Node
+
+const spawner: PackedScene = preload(\"res://Scenes/Spawner.tscn\")
+onready var player: Node = get_tree().get_nodes_in_group(\"player\")[0]
+
+func _ready() -> void:
+	randomize()
+	for node in get_children():
+		if node is TileMap:
+			var room_tiles: Array = node.get_used_cells()
+			var spawn_number: int = int(rand_range(node.min_spawner, node.max_spawner))
+			node.spawner_number = spawn_number
+			player.spawn_to_hunt = spawn_number
+			for i in spawn_number:
+				var spawn = spawner.instance()
+				var chosen_cell = room_tiles[rand_range(0, node.get_used_cells().size())]
+				spawn.global_position =  node.map_to_world(chosen_cell) + node.cell_size/2
+				node.add_child(spawn)"
+
+[node name="Rooms" type="Node"]
+script = SubResource( 1 )
+

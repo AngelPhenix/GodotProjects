@@ -1,0 +1,43 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scripts/char_light.gd" type="Script" id=1]
+[ext_resource path="res://Sprites/platformer_sprites/light/light.png" type="Texture" id=2]
+
+[node name="Char_light" type="Node2D"]
+
+script = ExtResource( 1 )
+light_color = Color( 1, 1, 1, 1 )
+energy = 1.0
+gresille = false
+
+[node name="Sprite" type="Sprite" parent="." index="0"]
+
+scale = Vector2( 0.2, 0.2 )
+texture = ExtResource( 2 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Light2D" type="Light2D" parent="." index="1"]
+
+enabled = true
+editor_only = false
+texture = ExtResource( 2 )
+offset = Vector2( 0, 0 )
+texture_scale = 1.0
+color = Color( 1, 1, 1, 1 )
+energy = 1.0
+mode = 0
+range_height = 0.0
+range_z_min = -1024
+range_z_max = 1024
+range_layer_min = 0
+range_layer_max = 0
+range_item_cull_mask = 1
+shadow_enabled = false
+shadow_color = Color( 0, 0, 0, 0 )
+shadow_buffer_size = 2048
+shadow_gradient_length = 0.0
+shadow_filter = 0
+shadow_filter_smooth = 0.0
+shadow_item_cull_mask = 1
+
+

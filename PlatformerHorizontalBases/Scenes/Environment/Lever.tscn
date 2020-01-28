@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Scripts/Lever.gd" type="Script" id=1]
+[ext_resource path="res://Sprites/lever.png" type="Texture" id=2]
+
+[sub_resource type="ShaderMaterial" id=1]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 60, 64 )
+
+[node name="Lever" type="Area2D"]
+script = ExtResource( 1 )
+shader_color = Color( 1, 1, 1, 1 )
+
+[node name="sprite" type="Sprite" parent="."]
+material = SubResource( 1 )
+scale = Vector2( 1, 1.5 )
+texture = ExtResource( 2 )
+
+[node name="shape" type="CollisionShape2D" parent="."]
+position = Vector2( 0, -1.5 )
+shape = SubResource( 2 )
+
+[connection signal="body_entered" from="." to="." method="_on_Lever_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_Lever_body_exited"]

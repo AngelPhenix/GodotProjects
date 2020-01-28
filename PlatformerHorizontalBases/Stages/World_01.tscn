@@ -1,0 +1,96 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/Environment/Platform.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/Environment/Passplatform.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/Environment/Lever.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Environment/Door.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/Enemies/Crawler.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/Enemies/Senser.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scenes/Npc.tscn" type="PackedScene" id=8]
+
+[sub_resource type="GDScript" id=1]
+resource_name = "npc2"
+script/source = "extends Area2D
+
+onready var player = get_tree().get_nodes_in_group(\"player\")[0]
+var player_near: bool = false
+var dialog = [\"Did you talk to my buddy right there ?\", \"Yeah, he actually said that was a tutorial..\", \"Well..........\"]
+
+func _process(delta: float) -> void:
+	if player_near && Input.is_action_just_pressed(\"action\") && !player.talking:
+		player.talking = true
+		globals.launch_dialog(self, dialog)
+
+func _on_NPC_body_entered(body: PlayerController) -> void:
+	if body is PlayerController:
+		player_near = true
+		globals.add_outline(self)
+
+func _on_NPC_body_exited(body: PlayerController) -> void:
+	if body is PlayerController:
+		player_near = false
+		globals.remove_outline(self)
+		if player.talking:
+			player.talking = false"
+
+[node name="World_01" type="Node"]
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 65.9249, 694.639 )
+
+[node name="Environment" type="Node" parent="."]
+editor/display_folded = true
+
+[node name="SolidEnv" type="Node" parent="Environment"]
+editor/display_folded = true
+
+[node name="Floor" parent="Environment/SolidEnv" instance=ExtResource( 2 )]
+position = Vector2( 2000, 850 )
+scale = Vector2( 40, 10 )
+
+[node name="LeftWall" parent="Environment/SolidEnv" instance=ExtResource( 2 )]
+position = Vector2( -98.4971, 199.991 )
+rotation = 1.5708
+scale = Vector2( 15, 10 )
+
+[node name="RightWall" parent="Environment/SolidEnv" instance=ExtResource( 2 )]
+position = Vector2( 3901.18, 145.431 )
+rotation = 1.5708
+scale = Vector2( 15, 10 )
+
+[node name="Platform" parent="Environment/SolidEnv" instance=ExtResource( 2 )]
+position = Vector2( 915.369, 613.366 )
+scale = Vector2( 3, 2 )
+
+[node name="Passplatform" parent="Environment/SolidEnv" instance=ExtResource( 3 )]
+position = Vector2( 318.766, 556.001 )
+scale = Vector2( 2, 1 )
+
+[node name="InteractiveEnv" type="Node" parent="Environment"]
+editor/display_folded = true
+
+[node name="Lever01" parent="Environment/InteractiveEnv" instance=ExtResource( 4 )]
+editor/display_folded = true
+position = Vector2( 1331.94, 686.414 )
+
+[node name="Door01" parent="Environment/InteractiveEnv/Lever01" instance=ExtResource( 5 )]
+position = Vector2( 137.271, -311.63 )
+
+[node name="Enemies" type="Node" parent="."]
+editor/display_folded = true
+
+[node name="Crawler" parent="Enemies" instance=ExtResource( 6 )]
+position = Vector2( 819.8, 565.454 )
+
+[node name="Senser" parent="Enemies" instance=ExtResource( 7 )]
+position = Vector2( 451.547, 725.222 )
+
+[node name="NPCs" type="Node" parent="."]
+
+[node name="NPC01" parent="NPCs" instance=ExtResource( 8 )]
+position = Vector2( 318.995, 521.655 )
+
+[node name="NPC02" parent="NPCs" instance=ExtResource( 8 )]
+position = Vector2( 768.462, 724.889 )
+script = SubResource( 1 )

@@ -1,0 +1,41 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://scenes/Enemy.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scripts/Enemy/enemy_int_rotating.gd" type="Script" id=2]
+[ext_resource path="res://sprites/SelfMadeArt/intelligent_enemy01.png" type="Texture" id=3]
+
+[node name="Rotating_enemy" index="0" instance=ExtResource( 1 )]
+
+position = Vector2( 39.7214, -10.7248 )
+collision_layer = 2
+collision_mask = 2
+script = ExtResource( 2 )
+_sections_unfolded = [ "Collision", "Transform", "Z Index" ]
+health = 1
+velocity = Vector2( 0, 0 )
+
+[node name="sprite" parent="." index="0"]
+
+scale = Vector2( 3, 3 )
+texture = ExtResource( 3 )
+_sections_unfolded = [ "Offset", "Transform" ]
+
+[node name="VisibilityNotifier2D" parent="." index="2"]
+
+position = Vector2( 0.0500292, -0.281392 )
+scale = Vector2( 1.3292, 1.02814 )
+
+[node name="cannon" type="Position2D" parent="." index="3"]
+
+position = Vector2( 0, 7.45369 )
+
+[node name="shoot_time" type="Timer" parent="." index="4"]
+
+process_mode = 1
+wait_time = 0.1
+one_shot = false
+autostart = false
+
+[connection signal="timeout" from="shoot_time" to="." method="_on_shoot_time_timeout"]
+
+

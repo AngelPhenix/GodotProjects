@@ -1,0 +1,8 @@
+[gd_scene format=2]
+
+[node name="GunNode" type="TextureRect"]
+margin_right = 20.0
+margin_bottom = 17.0
+rect_min_size = Vector2( 20, 0 )
+stretch_mode = 4
+

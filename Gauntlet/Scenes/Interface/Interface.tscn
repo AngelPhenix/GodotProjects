@@ -1,0 +1,91 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Scripts/interface.gd" type="Script" id=1]
+[ext_resource path="res://Sprites/interface.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/piece.png" type="Texture" id=3]
+[ext_resource path="res://Fonts/default_theme.tres" type="Theme" id=4]
+[ext_resource path="res://Sprites/HP_EMPTRY.png" type="Texture" id=5]
+[ext_resource path="res://Sprites/HP_FULL.png" type="Texture" id=6]
+[ext_resource path="res://Sprites/Guns/01.png" type="Texture" id=7]
+
+[node name="Interface" type="Control" groups=[
+"wp_container",
+]]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+
+[node name="CoinCounter" type="NinePatchRect" parent="."]
+editor/display_folded = true
+margin_left = 230.0
+margin_top = 4.0
+margin_right = 275.0
+margin_bottom = 23.0
+texture = ExtResource( 2 )
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+
+[node name="icon" type="TextureRect" parent="CoinCounter"]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -13.0
+margin_top = -11.5
+margin_right = 2.0
+margin_bottom = 3.5
+rect_scale = Vector2( 1.5, 1.5 )
+texture = ExtResource( 3 )
+
+[node name="number" type="Label" parent="CoinCounter"]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_left = 3.0
+margin_top = -8.5
+margin_right = 32.0
+margin_bottom = 10.5
+theme = ExtResource( 4 )
+text = "0"
+align = 1
+
+[node name="Health_Bar" type="HBoxContainer" parent="."]
+editor/display_folded = true
+margin_left = 8.0
+margin_top = 7.0
+margin_right = 106.0
+margin_bottom = 19.0
+
+[node name="hp" type="TextureProgress" parent="Health_Bar"]
+margin_right = 80.0
+margin_bottom = 15.0
+max_value = 20.0
+value = 20.0
+texture_under = ExtResource( 5 )
+texture_progress = ExtResource( 6 )
+
+[node name="Weapons" type="Panel" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -61.4867
+margin_top = -31.3735
+margin_right = 62.5133
+margin_bottom = -14.3735
+
+[node name="Container" type="HBoxContainer" parent="Weapons"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+alignment = 1
+
+[node name="Gun1" type="TextureRect" parent="Weapons/Container"]
+margin_left = 52.0
+margin_right = 72.0
+margin_bottom = 17.0
+rect_min_size = Vector2( 20, 0 )
+texture = ExtResource( 7 )
+stretch_mode = 4
+

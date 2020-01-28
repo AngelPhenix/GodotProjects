@@ -1,0 +1,43 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Scripts/crosshair.gd" type="Script" id=1]
+[ext_resource path="res://Sprites/platformer_sprites/crosshair.png" type="Texture" id=2]
+
+[sub_resource type="CircleShape2D" id=1]
+
+custom_solver_bias = 0.0
+radius = 5.8591
+
+[node name="Crosshair" type="Area2D" index="0"]
+
+scale = Vector2( 2, 2 )
+z_index = 99
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+collision_layer = 16
+collision_mask = 4
+audio_bus_override = false
+audio_bus_name = "Master"
+script = ExtResource( 1 )
+_sections_unfolded = [ "Collision", "Transform", "Z Index" ]
+
+[node name="sprite" type="Sprite" parent="." index="0"]
+
+texture = ExtResource( 2 )
+hframes = 2
+frame = 1
+_sections_unfolded = [ "Animation", "Visibility" ]
+
+[node name="shape" type="CollisionShape2D" parent="." index="1"]
+
+visible = false
+shape = SubResource( 1 )
+
+[connection signal="body_entered" from="." to="." method="_on_Crosshair_body_entered"]
+
+[connection signal="body_exited" from="." to="." method="_on_Crosshair_body_exited"]
+
+
