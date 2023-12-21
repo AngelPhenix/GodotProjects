@@ -1,0 +1,124 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/Environment/Platform.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/Environment/Passplatform.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/Enemies/Wolf.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Enemies/Crawler.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/Enemies/Senser.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/Npc.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Sprites/Room_01_layer3.png" type="Texture" id=8]
+[ext_resource path="res://Sprites/Room_01_layer2.png" type="Texture" id=9]
+[ext_resource path="res://Sprites/Room_01_layer1.png" type="Texture" id=10]
+
+[sub_resource type="GDScript" id=1]
+resource_name = "npc2"
+script/source = "extends Area2D
+
+onready var player = get_tree().get_nodes_in_group(\"player\")[0]
+var player_near: bool = false
+var dialog = [\"Did you talk to my buddy right there ?\", \"Yeah, he actually said that was a tutorial..\", \"Well..........\"]
+
+func _process(delta: float) -> void:
+	if player_near && Input.is_action_just_pressed(\"action\") && !player.talking:
+		player.talking = true
+		globals.launch_dialog(self, dialog)
+
+func _on_NPC_body_entered(body: PlayerController) -> void:
+	if body is PlayerController:
+		player_near = true
+
+func _on_NPC_body_exited(body: PlayerController) -> void:
+	if body is PlayerController:
+		player_near = false
+		if player.talking:
+			player.talking = false"
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 1918.53, 36.736 )
+
+[node name="World_01" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 738.523, 876.844 )
+
+[node name="Environment" type="Node2D" parent="."]
+
+[node name="SolidEnv" type="Node2D" parent="Environment"]
+position = Vector2( -3.896, 215.279 )
+
+[node name="LeftWall" parent="Environment/SolidEnv" instance=ExtResource( 2 )]
+position = Vector2( -98.4971, 199.991 )
+rotation = 1.5708
+scale = Vector2( 15, 10 )
+
+[node name="RightWall" parent="Environment/SolidEnv" instance=ExtResource( 2 )]
+position = Vector2( 3942.92, 134.381 )
+rotation = 1.5708
+scale = Vector2( 15, 10 )
+
+[node name="Platform" parent="Environment/SolidEnv" instance=ExtResource( 2 )]
+position = Vector2( 916.801, 557.519 )
+scale = Vector2( 3, 2 )
+
+[node name="Passplatform" parent="Environment/SolidEnv" instance=ExtResource( 3 )]
+position = Vector2( 318.766, 556.001 )
+scale = Vector2( 2, 1 )
+
+[node name="Enemies" type="Node2D" parent="."]
+position = Vector2( -2.46387, 190.986 )
+
+[node name="Wolf" parent="Enemies" instance=ExtResource( 4 )]
+position = Vector2( 1702.78, 726.094 )
+
+[node name="Crawler" parent="Enemies" instance=ExtResource( 5 )]
+position = Vector2( 838.416, 536.814 )
+
+[node name="Senser" parent="Enemies" instance=ExtResource( 6 )]
+position = Vector2( 461.606, 729.091 )
+
+[node name="NPCs" type="Node2D" parent="."]
+
+[node name="NPC01" parent="NPCs" instance=ExtResource( 7 )]
+position = Vector2( 314.794, 736.489 )
+
+[node name="NPC02" parent="NPCs" instance=ExtResource( 7 )]
+position = Vector2( 985.393, 919.659 )
+script = SubResource( 1 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2( 1912.13, 981.35 )
+shape = SubResource( 2 )
+
+[node name="Backgrounds" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="Backgrounds"]
+
+[node name="Sprite" type="Sprite" parent="Backgrounds/ParallaxLayer"]
+position = Vector2( 1920.38, 539.353 )
+texture = ExtResource( 8 )
+
+[node name="Foregrounds" type="ParallaxBackground" parent="."]
+layer = 1
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="Foregrounds"]
+position = Vector2( -1.5358, -9.12262 )
+z_index = 1
+motion_scale = Vector2( 1.2, 1 )
+motion_mirroring = Vector2( 3840, 0 )
+
+[node name="Sprite" type="Sprite" parent="Foregrounds/ParallaxLayer2"]
+position = Vector2( 1920.52, 529 )
+texture = ExtResource( 9 )
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="Foregrounds"]
+position = Vector2( 1.50745, 6.02936 )
+z_index = 2
+motion_scale = Vector2( 1.5, 1 )
+motion_mirroring = Vector2( 3840, 0 )
+
+[node name="Sprite" type="Sprite" parent="Foregrounds/ParallaxLayer3"]
+position = Vector2( 1920.52, 799.073 )
+texture = ExtResource( 10 )
