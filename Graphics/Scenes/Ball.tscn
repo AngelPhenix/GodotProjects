@@ -30,7 +30,7 @@ func _on_vis_screen_exited():
 	queue_free()
 
 func _on_Ball_area_entered(area):
-	if !dict.has(area) && line_count < 2 && area.line_count < 2:
+	if !dict.has(area) && line_count < 10 && area.line_count < 10:
 		var new_line = line.instance()
 		new_line.add_point(position)
 		new_line.add_point(area.position)
@@ -55,7 +55,8 @@ func _on_Ball_area_entered(area):
 #		line_count = dict.size()
 
 func _on_Ball_area_exited(area):
-	get_parent().delete_line(self, area)"
+	get_parent().delete_line(self, area)
+"
 
 [sub_resource type="CircleShape2D" id=2]
 
@@ -72,6 +73,7 @@ shape = SubResource( 2 )
 
 [node name="vis" type="VisibilityNotifier2D" parent="."]
 rect = Rect2( -3, -3, 6, 6 )
+
 [connection signal="area_entered" from="." to="." method="_on_Ball_area_entered"]
 [connection signal="area_exited" from="." to="." method="_on_Ball_area_exited"]
 [connection signal="screen_exited" from="vis" to="." method="_on_vis_screen_exited"]

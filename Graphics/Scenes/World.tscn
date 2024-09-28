@@ -36,7 +36,8 @@ func delete_line(ball0: Object, ball1: Object) -> void:
 	if is_instance_valid(line1):
 		ball1.dict.erase(ball0)
 		ball1.line_count = ball1.dict.size()
-		line1.queue_free()"
+		line1.queue_free()
+"
 
 [node name="World" type="Node2D"]
 script = SubResource( 1 )
@@ -45,4 +46,5 @@ max_ball = 500
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.1
 autostart = true
+
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

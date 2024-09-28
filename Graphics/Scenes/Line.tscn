@@ -17,7 +17,8 @@ func _process(delta: float) -> void:
 	else:
 		ball0.dict.erase(ball1)
 		ball1.dict.erase(ball0)
-		queue_free()"
+		queue_free()
+"
 
 [node name="Line" type="Line2D"]
 width = 2.0
