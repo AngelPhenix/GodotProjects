@@ -29,8 +29,19 @@ func _ready() -> void:
 	if civ_num > len(civilizations.keys()):
 		civ_num = len(civilizations.keys())
 	randomize()
+	init_fow()
 	init_civilizations(civ_num)
 	start_turn()
+
+# Initialize Fog Of War before anything else is done
+# Cover the entire tilemap with it
+func init_fow() -> void:
+	var map_size = ($Map as TileMap).get_used_rect()
+	var fog_tile_id = 0
+	
+	for x in range(map_size.position.x, map_size.position.x + map_size.size.x):
+		for y in range(map_size.position.y, map_size.position.y + map_size.size.y):
+			($FOW as TileMap).set_cell(x, y, fog_tile_id)
 
 # For each civilization, initialize their nodes
 # Civ01 / Cities / Units in which every building and units are going to be added

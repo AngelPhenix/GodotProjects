@@ -2,6 +2,7 @@ extends KinematicBody2D
 class_name Unit
 
 onready var map: TileMap = get_tree().get_root().get_node("/root/World/Map")
+onready var fow: TileMap = get_tree().get_root().get_node('/root/World/FOW')
 
 # MOVING VARIABLES
 var movement: Vector2
