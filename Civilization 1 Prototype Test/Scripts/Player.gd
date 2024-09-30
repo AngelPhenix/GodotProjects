@@ -2,7 +2,7 @@ extends KinematicBody2D
 class_name Unit
 
 onready var map: TileMap = get_tree().get_root().get_node("/root/World/Map")
-onready var fow: TileMap = get_tree().get_root().get_node('/root/World/FOW')
+onready var fow_map: TileMap = get_tree().get_root().get_node('/root/World/FOW')
 
 # MOVING VARIABLES
 var movement: Vector2
@@ -13,6 +13,7 @@ export var animation_speed: float = .5
 # GAME VARIABLES
 var attack: int = 1
 var defense: int = 1
+var vision_radius: int = 2
 var total_movements: int = 3
 var is_selected: bool = false
 var turn_id: int
@@ -32,6 +33,7 @@ func _ready() -> void:
 	connect("change_unit", get_tree().get_root().get_node("/root/World"), "get_next_unit", [get_parent().get_parent()])
 	tile_size = ($sprite as Sprite).texture.get_width() * ($sprite as Sprite).scale.x
 	movements_left = total_movements
+	clear_fog_at(global_position)
 	state_loop()
 
 # Stops the inputs if the unit didn't finish its movement.
@@ -88,6 +90,12 @@ func check_tile(direction: Vector2) -> void:
 	var player_pos: Vector2 = map.world_to_map(position)
 	if !ground_cells.has(player_pos + direction):
 		movement = Vector2()
+
+func clear_fog_at(unit_position: Vector2) -> void:
+	var unit_tile_position = unit_position / tile_size
+	for x in range(unit_tile_position.x - vision_radius, unit_tile_position.x + (vision_radius+1)):
+		for y in range(unit_tile_position.y - vision_radius, unit_tile_position.y + (vision_radius+1)):
+			fow_map.set_cell(x, y, -1)
 
 # Unit moving, stop flickering animation and inputs.
 func _on_tween_tween_started(object: Object, key: NodePath) -> void:
