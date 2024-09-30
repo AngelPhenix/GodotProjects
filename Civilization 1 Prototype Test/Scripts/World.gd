@@ -69,6 +69,7 @@ func start_turn() -> void:
 	for node in get_tree().get_nodes_in_group("units"):
 		for unit in node.get_children():
 			unit.state = unit.unit_state.WAITING
+			unit.movements_left = unit.total_movements
 	get_next_unit(current_civ)
 
 func get_next_unit(civ: Node) -> void:
