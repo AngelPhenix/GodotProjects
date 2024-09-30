@@ -103,8 +103,10 @@ func _on_tween_tween_started(object: Object, key: NodePath) -> void:
 	($anim as AnimationPlayer).stop()
 	is_moving = true
 	movements_left -= 1
+	clear_fog_at(global_position)
 
 # Unit finished moving : inputs are free and flickering animation restarts.
 func _on_tween_tween_completed(object: Object, key: NodePath) -> void:
 	is_moving = false
 	movement = Vector2.ZERO
+	clear_fog_at(global_position)
