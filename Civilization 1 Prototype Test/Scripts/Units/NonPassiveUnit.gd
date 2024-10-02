@@ -1,7 +1,7 @@
 extends PlayerUnit
 class_name NonPassiveUnit
 
-var attack = 0
+var attack
 
 func _ready() -> void:
 	pass
