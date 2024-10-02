@@ -1,5 +1,7 @@
 extends PassiveUnit
 
+onready var city_scn: PackedScene = preload("res://Scenes/City.tscn")
+
 func _init() -> void:
 	vision_radius = 1
 
@@ -9,4 +11,11 @@ func _ready() -> void:
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("build") and state == unit_state.PLAYING:
-		print("Here's a new city !")
+		build_city(position)
+
+func build_city(settlers_position: Vector2) -> void:
+	var new_city: Node = city_scn.instance()
+	new_city.modulate = civ_color
+	new_city.position = settlers_position
+	get_tree().get_nodes_in_group("world")[0].get_node(civ_name).add_child(new_city)
+	killed()

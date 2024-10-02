@@ -17,7 +17,10 @@ var defense: int
 var health: int
 var vision_radius: int
 var is_selected: bool = false
-var turn_id: int
+
+# GAME VARIABLES
+var civ_name: String
+var civ_color: Color
 
 # FSM VARIABLES
 var state: int
@@ -30,6 +33,8 @@ enum {WATER, GROUND}
 
 # Base the tile_size on the size of the texture used * sprite scale.
 func _ready() -> void:
+	modulate = civ_color
+	z_index = 2
 	connect("change_unit", get_tree().get_root().get_node("/root/World"), "get_next_unit", [get_parent().get_parent()])
 	tile_size = ($sprite as Sprite).texture.get_width() * ($sprite as Sprite).scale.x
 	clear_fog_at(global_position)
@@ -92,18 +97,15 @@ func check_tile(direction: Vector2) -> void:
 	if !ground_cells.has(player_pos + direction):
 		movement = Vector2()
 
-#func clear_fog_at(unit_position: Vector2) -> void:
-#	var unit_tile_position = (unit_position - Vector2(tile_size/2, tile_size/2)) / tile_size
-#	print(unit_tile_position)
-#	for x in range(unit_tile_position.x - vision_radius, unit_tile_position.x + (vision_radius+1)):
-#		for y in range(unit_tile_position.y - vision_radius, unit_tile_position.y + (vision_radius+1)):
-#			fow_map.set_cell(x, y, -1)
-
 func clear_fog_at(unit_position: Vector2) -> void:
 	var unit_tile_position = fow_map.world_to_map(unit_position)
 	for x in range(unit_tile_position.x - vision_radius, unit_tile_position.x + (vision_radius+1)):
 		for y in range(unit_tile_position.y - vision_radius, unit_tile_position.y + (vision_radius+1)):
 			fow_map.set_cell(x, y, -1)
+
+func killed() -> void:
+	emit_signal("change_unit")
+	queue_free()
 
 # Unit moving, stop flickering animation and inputs.
 func _on_tween_tween_started(object: Object, key: NodePath) -> void:

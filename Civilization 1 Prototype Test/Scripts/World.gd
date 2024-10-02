@@ -85,8 +85,15 @@ func init_civilizations(number_of_civs: int) -> void:
 		var new_unit_two: Node = settler_unit.instance()
 		var ground_cells: Array = ($Map as TileMap).get_used_cells_by_id(GROUND)
 		var values: Dictionary = civilizations.get(civ.name)
-		new_unit.modulate = values["color"]
-		new_unit_two.modulate = values["color"]
+		
+		new_unit.civ_name = civ.name
+		new_unit.civ_color = values["color"]
+		
+		new_unit_two.civ_name = civ.name
+		new_unit_two.civ_color = values["color"]
+		
+#		new_unit.modulate = values["color"]
+#		new_unit_two.modulate = values["color"]
 		new_unit.position = ($Map as TileMap).map_to_world(ground_cells[randi() % len(ground_cells)]) + Vector2(16, 16)
 		new_unit_two.position = ($Map as TileMap).map_to_world(ground_cells[randi() % len(ground_cells)]) + Vector2(16, 16)
 		civ.get_node("Units").add_child(new_unit_two)

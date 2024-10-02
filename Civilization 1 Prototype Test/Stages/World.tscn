@@ -61,7 +61,7 @@ polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
 0/shapes = [  ]
 0/z_index = 2
 
-[node name="World" type="Node"]
+[node name="World" type="Node" groups=["world"]]
 script = ExtResource( 1 )
 civ_num = 1
 
