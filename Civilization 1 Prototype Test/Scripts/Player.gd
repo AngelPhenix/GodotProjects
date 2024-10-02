@@ -33,7 +33,7 @@ func _ready() -> void:
 	connect("change_unit", get_tree().get_root().get_node("/root/World"), "get_next_unit", [get_parent().get_parent()])
 	tile_size = ($sprite as Sprite).texture.get_width() * ($sprite as Sprite).scale.x
 	movements_left = total_movements
-	clear_fog_at(global_position)
+	clear_fog_at(position)
 	state_loop()
 
 # Stops the inputs if the unit didn't finish its movement.

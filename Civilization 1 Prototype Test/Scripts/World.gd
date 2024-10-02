@@ -89,8 +89,8 @@ func init_civilizations(number_of_civs: int) -> void:
 		new_unit_two.modulate = values["color"]
 		new_unit.position = ($Map as TileMap).map_to_world(ground_cells[randi() % len(ground_cells)]) + Vector2(16, 16)
 		new_unit_two.position = ($Map as TileMap).map_to_world(ground_cells[randi() % len(ground_cells)]) + Vector2(16, 16)
-		civ.get_node("Units").add_child(new_unit)
 		civ.get_node("Units").add_child(new_unit_two)
+		civ.get_node("Units").add_child(new_unit)
 	
 	
 
