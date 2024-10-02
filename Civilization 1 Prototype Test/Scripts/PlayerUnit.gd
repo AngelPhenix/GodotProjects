@@ -1,5 +1,5 @@
 extends KinematicBody2D
-class_name BaseUnit
+class_name PlayerUnit
 
 onready var map: TileMap = get_tree().get_root().get_node("/root/World/Map")
 onready var fow_map: TileMap = get_tree().get_root().get_node('/root/World/FOW')
@@ -12,10 +12,9 @@ var total_movements: int = 3
 var movements_left: int
 export var animation_speed: float = .5
 
-# GAME VARIABLES
-var health: int = 1
-var attack: int = 1
-var defense: int = 1
+# BASE UNIT VARIABLES FOR EVERY SINGLE UNIT IN THE GAME
+var defense: int
+var health: int
 var vision_radius: int = 2
 var is_selected: bool = false
 var turn_id: int
