@@ -10,7 +10,7 @@ var tile_size: int
 var is_moving: bool = false
 var total_movements: int = 3
 var movements_left: int
-export var animation_speed: float = .5
+var animation_speed: float = .2
 
 # BASE UNIT VARIABLES FOR EVERY SINGLE UNIT IN THE GAME
 var defense: int

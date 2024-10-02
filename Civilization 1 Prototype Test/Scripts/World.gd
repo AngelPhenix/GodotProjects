@@ -1,6 +1,8 @@
 extends Node
 
 var unit: PackedScene = preload("res://Scenes/Unit.tscn")
+var explorer_unit: PackedScene = preload("res://Scenes/Units/Explorer.tscn")
+var settler_unit: PackedScene = preload("res://Scenes/Units/Settler.tscn")
 
 # Number of civilization in the game
 export (int) var civ_num: int
@@ -66,17 +68,35 @@ func init_civilizations(number_of_civs: int) -> void:
 		civ_units.add_to_group("units")
 		civ_node.add_child(civ_units)
 	
+#	for civ in civs:
+#		var new_unit: Node = unit.instance()
+##		var new_unit_two: Node = unit.instance()
+#		var ground_cells: Array = ($Map as TileMap).get_used_cells_by_id(GROUND)
+#		var values: Dictionary = civilizations.get(civ.name)
+#		new_unit.modulate = values["color"]
+##		new_unit_two.modulate = values["color"]
+#		new_unit.position = ($Map as TileMap).map_to_world(ground_cells[randi() % len(ground_cells)]) + Vector2(16, 16)
+##		new_unit_two.position = ($Map as TileMap).map_to_world(ground_cells[randi() % len(ground_cells)]) + Vector2(16, 16)
+#		civ.get_node("Units").add_child(new_unit)
+##		civ.get_node("Units").add_child(new_unit_two)
+
 	for civ in civs:
-		var new_unit: Node = unit.instance()
-#		var new_unit_two: Node = unit.instance()
+		var new_unit: Node = explorer_unit.instance()
+		var new_unit_two: Node = settler_unit.instance()
 		var ground_cells: Array = ($Map as TileMap).get_used_cells_by_id(GROUND)
 		var values: Dictionary = civilizations.get(civ.name)
 		new_unit.modulate = values["color"]
-#		new_unit_two.modulate = values["color"]
+		new_unit_two.modulate = values["color"]
 		new_unit.position = ($Map as TileMap).map_to_world(ground_cells[randi() % len(ground_cells)]) + Vector2(16, 16)
-#		new_unit_two.position = ($Map as TileMap).map_to_world(ground_cells[randi() % len(ground_cells)]) + Vector2(16, 16)
+		new_unit_two.position = ($Map as TileMap).map_to_world(ground_cells[randi() % len(ground_cells)]) + Vector2(16, 16)
 		civ.get_node("Units").add_child(new_unit)
-#		civ.get_node("Units").add_child(new_unit_two)
+		civ.get_node("Units").add_child(new_unit_two)
+	
+	
+
+func generate_unit(unit_name, position) -> void:
+	
+	pass
 
 func start_turn() -> void:
 	index = 0
