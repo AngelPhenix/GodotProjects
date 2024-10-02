@@ -115,6 +115,7 @@ func get_next_unit(civ: Node) -> void:
 	for unit in current_civ.get_node("Units").get_children():
 		if unit.state == unit.unit_state.WAITING:
 			unit.state = unit.unit_state.PLAYING
+			$Camera.position = unit.global_position
 			return
 	if index + 1 < len(civs):
 		index += 1
