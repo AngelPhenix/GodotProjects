@@ -63,7 +63,7 @@ polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
 
 [node name="World" type="Node"]
 script = ExtResource( 1 )
-civ_num = 6
+civ_num = 1
 
 [node name="Map" type="TileMap" parent="."]
 tile_set = SubResource( 3 )

@@ -1,5 +1,5 @@
 extends KinematicBody2D
-class_name Unit
+class_name BaseUnit
 
 onready var map: TileMap = get_tree().get_root().get_node("/root/World/Map")
 onready var fow_map: TileMap = get_tree().get_root().get_node('/root/World/FOW')
@@ -8,21 +8,22 @@ onready var fow_map: TileMap = get_tree().get_root().get_node('/root/World/FOW')
 var movement: Vector2
 var tile_size: int
 var is_moving: bool = false
+var total_movements: int = 3
+var movements_left: int
 export var animation_speed: float = .5
 
 # GAME VARIABLES
+var health: int = 1
 var attack: int = 1
 var defense: int = 1
 var vision_radius: int = 2
-var total_movements: int = 3
 var is_selected: bool = false
 var turn_id: int
-var movements_left: int
-signal change_unit
 
 # FSM VARIABLES
 var state: int
 enum unit_state {STOPPED, PLAYING, WAITING, MOVING}
+signal change_unit
 
 # ENVIRONMENT VARIABLES
 var terrain: int

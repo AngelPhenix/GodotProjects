@@ -68,19 +68,20 @@ func init_civilizations(number_of_civs: int) -> void:
 	
 	for civ in civs:
 		var new_unit: Node = unit.instance()
+#		var new_unit_two: Node = unit.instance()
 		var ground_cells: Array = ($Map as TileMap).get_used_cells_by_id(GROUND)
 		var values: Dictionary = civilizations.get(civ.name)
 		new_unit.modulate = values["color"]
+#		new_unit_two.modulate = values["color"]
 		new_unit.position = ($Map as TileMap).map_to_world(ground_cells[randi() % len(ground_cells)]) + Vector2(16, 16)
+#		new_unit_two.position = ($Map as TileMap).map_to_world(ground_cells[randi() % len(ground_cells)]) + Vector2(16, 16)
 		civ.get_node("Units").add_child(new_unit)
+#		civ.get_node("Units").add_child(new_unit_two)
 
 func start_turn() -> void:
 	index = 0
 	current_civ = civs[index]
-	for node in get_tree().get_nodes_in_group("units"):
-		for unit in node.get_children():
-			unit.state = unit.unit_state.WAITING
-			unit.movements_left = unit.total_movements
+	reset_units()
 	get_next_unit(current_civ)
 
 func get_next_unit(civ: Node) -> void:
@@ -94,3 +95,9 @@ func get_next_unit(civ: Node) -> void:
 		get_next_unit(current_civ)
 	else:
 		start_turn()
+
+func reset_units() -> void:
+	for node in get_tree().get_nodes_in_group("units"):
+		for unit in node.get_children():
+			unit.state = unit.unit_state.WAITING
+			unit.movements_left = unit.total_movements

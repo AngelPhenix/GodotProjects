@@ -10,11 +10,17 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "KinematicBody2D",
+"class": "BaseUnit",
+"language": "GDScript",
+"path": "res://Scripts/PlayerUnit.gd"
+}, {
+"base": "KinematicBody2D",
 "class": "Unit",
 "language": "GDScript",
 "path": "res://Scripts/Player.gd"
 } ]
 _global_script_class_icons={
+"BaseUnit": "",
 "Unit": ""
 }
 
