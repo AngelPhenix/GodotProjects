@@ -4,8 +4,8 @@ onready var world = get_tree().get_nodes_in_group("world")[0]
 
 var civ_color: Color
 var civ_name: String
-
 var current_production: int = 2
+var current_production_name: String = "Settler"
 var accumulated_production: int
 var food: int = 1
 var needed_prod: int = 6
@@ -19,7 +19,7 @@ func _ready() -> void:
 func process_queue() -> void:
 	accumulated_production += current_production
 	if accumulated_production >= needed_prod:
-		var new_unit = load("res://Scenes/Units/" + "Explorer" + ".tscn").instance()
+		var new_unit = load("res://Scenes/Units/" + current_production_name + ".tscn").instance()
 		new_unit.position = position
 		new_unit.civ_name = civ_name
 		new_unit.civ_color = civ_color
@@ -29,5 +29,9 @@ func process_queue() -> void:
 
 func _on_Area2D_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton and event.pressed and event.button_index == BUTTON_LEFT:
-		print("City's been clicked!")
-		world.open_city_interface()
+		# EMITS A SIGNAL ON WORLD WITH ALL THE VARIABLES FOR IT TO FEED TO THE MAIN CANVASLAYER
+		world.open_city_interface({
+			"id" : self,
+			"city_name" : "Paris", 
+			"unit_in_production" : current_production_name,
+		})

@@ -26,7 +26,10 @@ var civilizations: Dictionary = {"France" : {"color" : Color(0.148788, 0.556367,
 	"Peru" : {"color" : Color(0.679688, 0.244263, 0.244263)}
 }
 
+signal city_clicked(city_data)
+
 func _ready() -> void:
+	connect("city_clicked", $CityPanel, "_update_city_info")
 	# Checking if there's enough civilization colors, if not : reduce the number to civilization.size()
 	if civ_num > len(civilizations.keys()):
 		civ_num = len(civilizations.keys())
@@ -131,5 +134,5 @@ func process_cities() -> void:
 		if city.has_method('process_queue'):
 			city.process_queue()
 
-func open_city_interface() -> void:
-	$CityPanel.visible = true
+func open_city_interface(city_data: Dictionary) -> void:
+	emit_signal("city_clicked", city_data)
