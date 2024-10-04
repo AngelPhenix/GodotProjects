@@ -1,20 +1,36 @@
-[gd_scene format=2]
+[gd_scene load_steps=2 format=2]
 
-[node name="City" type="Control"]
+[ext_resource path="res://Scripts/Layout/CityPanel.gd" type="Script" id=1]
+
+[node name="CityPanel" type="CanvasLayer"]
+script = ExtResource( 1 )
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="NamePanel" type="PanelContainer" parent="."]
+margin_left = 80.0
+margin_top = 34.0
+margin_right = 922.0
+margin_bottom = 85.0
 
-[node name="UnitPanel" type="PanelContainer" parent="CanvasLayer"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 728.0
-margin_top = 341.0
-margin_right = -20.0
-margin_bottom = -23.0
+[node name="Label" type="Label" parent="NamePanel"]
+margin_left = 7.0
+margin_top = 18.0
+margin_right = 835.0
+margin_bottom = 32.0
+text = "Name Of the city"
+align = 1
+valign = 1
 
-[node name="Change" type="Button" parent="CanvasLayer/UnitPanel"]
+[node name="UnitPanel" type="PanelContainer" parent="."]
+margin_left = 819.0
+margin_top = 370.0
+margin_right = 1015.0
+margin_bottom = 544.0
+
+[node name="Change" type="Button" parent="UnitPanel"]
 margin_left = 7.0
 margin_top = 7.0
 margin_right = 65.0
@@ -22,3 +38,12 @@ margin_bottom = 27.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
 text = "Change"
+
+[node name="Exit" type="Button" parent="."]
+margin_left = 907.0
+margin_top = 556.0
+margin_right = 1014.0
+margin_bottom = 585.0
+text = "Exit"
+
+[connection signal="pressed" from="Exit" to="." method="_on_Exit_pressed"]

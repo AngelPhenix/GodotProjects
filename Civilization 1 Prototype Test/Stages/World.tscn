@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Scripts/World.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/WaterTile.png" type="Texture" id=2]
 [ext_resource path="res://Sprites/GrassTile.png" type="Texture" id=3]
 [ext_resource path="res://Sprites/FowTile.png" type="Texture" id=4]
+[ext_resource path="res://Scenes/Layout/City.tscn" type="PackedScene" id=5]
 
 [sub_resource type="NavigationPolygon" id=1]
 vertices = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
@@ -78,3 +79,6 @@ format = 1
 
 [node name="Camera" type="Camera2D" parent="."]
 current = true
+
+[node name="CityPanel" parent="." instance=ExtResource( 5 )]
+visible = false

@@ -25,3 +25,9 @@ func process_queue() -> void:
 		new_unit.civ_color = civ_color
 		world.get_node(civ_name).get_node("Units").add_child(new_unit)
 		accumulated_production = 0
+
+
+func _on_Area2D_input_event(viewport, event, shape_idx):
+	if event is InputEventMouseButton and event.pressed and event.button_index == BUTTON_LEFT:
+		print("City's been clicked!")
+		world.open_city_interface()

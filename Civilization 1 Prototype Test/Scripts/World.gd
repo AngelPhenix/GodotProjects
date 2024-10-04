@@ -130,3 +130,6 @@ func process_cities() -> void:
 	for city in get_tree().get_nodes_in_group('city'):
 		if city.has_method('process_queue'):
 			city.process_queue()
+
+func open_city_interface() -> void:
+	$CityPanel.visible = true

@@ -37,3 +37,5 @@ custom_fonts/font = SubResource( 3 )
 text = "1"
 align = 1
 valign = 1
+
+[connection signal="input_event" from="Area2D" to="." method="_on_Area2D_input_event"]
