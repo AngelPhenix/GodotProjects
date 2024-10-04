@@ -10,8 +10,6 @@ var accumulated_production: int
 var food: int = 1
 var needed_prod: int = 6
 
-#signal unit_produced(production_name)
-
 func _ready() -> void:
 	modulate = civ_color
 
@@ -20,11 +18,7 @@ func _ready() -> void:
 
 func process_queue() -> void:
 	accumulated_production += current_production
-	print("The City is processing !")
-	print("Current production in city :" + str(accumulated_production))
 	if accumulated_production >= needed_prod:
-#		emit_signal("unit_produced", "Settler")
-		print("New unit made ! A Settler appeared !")
 		var new_unit = load("res://Scenes/Units/" + "Explorer" + ".tscn").instance()
 		new_unit.position = position
 		new_unit.civ_name = civ_name
