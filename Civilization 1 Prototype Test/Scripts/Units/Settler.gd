@@ -15,7 +15,9 @@ func _input(event: InputEvent) -> void:
 
 func build_city(settlers_position: Vector2) -> void:
 	var new_city: Node = city_scn.instance()
+	new_city.civ_color = civ_color
+	new_city.civ_name = civ_name
 	new_city.modulate = civ_color
 	new_city.position = settlers_position
-	get_tree().get_nodes_in_group("world")[0].get_node(civ_name).add_child(new_city)
+	get_tree().get_nodes_in_group("world")[0].get_node(civ_name).get_node("Cities").add_child(new_city)
 	killed()

@@ -99,15 +99,11 @@ func init_civilizations(number_of_civs: int) -> void:
 		civ.get_node("Units").add_child(new_unit_two)
 		civ.get_node("Units").add_child(new_unit)
 	
-	
-
-func generate_unit(unit_name, position) -> void:
-	
-	pass
 
 func start_turn() -> void:
 	index = 0
 	current_civ = civs[index]
+	process_cities()
 	reset_units()
 	get_next_unit(current_civ)
 
@@ -129,3 +125,8 @@ func reset_units() -> void:
 		for unit in node.get_children():
 			unit.state = unit.unit_state.WAITING
 			unit.movements_left = unit.total_movements
+
+func process_cities() -> void:
+	for city in get_tree().get_nodes_in_group('city'):
+		if city.has_method('process_queue'):
+			city.process_queue()
