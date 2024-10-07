@@ -1,6 +1,6 @@
 extends CanvasLayer
 
-func _update_city_info(city_info: Dictionary) -> void:
+func open(city_info: Dictionary) -> void:
 	print(city_info["id"])
 	$NamePanel/Name.text = city_info["city_name"]
 	$UnitPanel/Name.text = "Production : " + city_info["unit_in_production"]

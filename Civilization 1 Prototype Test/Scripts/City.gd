@@ -1,6 +1,7 @@
 extends Node2D
 
 onready var world = get_tree().get_nodes_in_group("world")[0]
+onready var city_interface = get_tree().get_nodes_in_group("city_interface")[0]
 
 var civ_color: Color
 var civ_name: String
@@ -29,8 +30,7 @@ func process_queue() -> void:
 
 func _on_Area2D_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton and event.pressed and event.button_index == BUTTON_LEFT:
-		# EMITS A SIGNAL ON WORLD WITH ALL THE VARIABLES FOR IT TO FEED TO THE MAIN CANVASLAYER
-		world.open_city_interface({
+		city_interface.open({
 			"id" : self,
 			"city_name" : "Paris", 
 			"unit_in_production" : current_production_name,
