@@ -12,6 +12,7 @@ var accumulated_production: int
 var food: int = 1
 var science: int = 1
 var needed_prod: int = 6
+var built_buildings: Array
 
 func _ready() -> void:
 	change_name()
@@ -23,13 +24,18 @@ func change_name() -> void:
 
 func process_queue() -> void:
 	accumulated_production += current_production
-	if accumulated_production >= needed_prod:
-		if GlobalData.units_data.has(current_production_name):
+	if GlobalData.units_data.has(current_production_name):
+		if accumulated_production >= GlobalData.units_data.get(current_production_name)["production"]:
 			var new_unit = load("res://Scenes/Units/" + current_production_name + ".tscn").instance()
 			new_unit.position = position
 			new_unit.civ_name = civ_name
 			new_unit.civ_color = civ_color
 			world.get_node(civ_name).get_node("Units").add_child(new_unit)
+			accumulated_production = 0
+	if GlobalData.buildings_data.has(current_production_name):
+		if accumulated_production >= GlobalData.buildings_data.get(current_production_name)["production"]:
+			built_buildings.append(current_production)
+			print("The " + current_production_name + " has been built by " + city_name)
 			accumulated_production = 0
 
 # WHEN THE CITY'S SPRITE IS CLICKED, OPEN THE WINDOW TO INTERACT WITH IT

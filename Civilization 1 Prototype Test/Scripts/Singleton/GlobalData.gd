@@ -10,15 +10,30 @@ const cities_name = {
 
 ############ UNITS ############
 const units_data = {
-	"Settler": {"attack":0, "hp":1, "movement":2, "production": 5},
-	"Explorer": {"attack":1, "hp":3, "movement":3, "production": 8},
-	"Warrior": {"attack": 3, "hp":5, "movement":2, "production:": 10}
+	"Settler": {
+		"attack":0, 
+		"hp":1, 
+		"movement":2, 
+		"production": 5
+	},
+	"Explorer": {
+		"attack":1, 
+		"hp":3, 
+		"movement":3, 
+		"production": 8
+	},
+	"Warrior": {
+		"attack": 3, 
+		"hp":5, 
+		"movement":2, 
+		"production:": 10
+	}
 }
 
 var discovered_units = {
 	"Settler": true,
 	"Explorer": true,
-	"Warrior": true,
+	"Warrior": false,
 	"Archer": false
 }
 
@@ -35,13 +50,33 @@ func unlock_unit(unit_name: String) -> void:
 
 ############ BUILDINGS ############
 const buildings_data = {
-	"Granary": {"production": 20, "desc": "The Granary gives +2 food."},
-	"School": {"production": 35, "desc": "The School gives +5 science."}
+	"Granary": {
+		"production": 20, 
+		"food_bonus": 2,
+		"production_bonus": 0,
+		"science_bonus": 0, 
+		"desc": "The Granary gives +2 food."
+	},
+	"School": {
+		"production": 35,
+		"food_bonus": 0,
+		"production_bonus": 0,
+		"science_bonus": 5,
+		"desc": "The School gives +5 science."
+	},
+	"Barracks": {
+		"production": 30,
+		"food_bonus": 0,
+		"production_bonus": 2,
+		"science_bonus": 0,
+		"desc": "The School gives +5 science."
+	}
 }
 
 var discovered_buildings = {
-	"Granary": true,
-	"School": false
+	"Granary": false,
+	"School": false,
+	"Barracks": false
 }
 
 func is_building_unlocked(building_name: String) -> bool:
