@@ -5,6 +5,7 @@ onready var city_interface = get_tree().get_nodes_in_group("city_interface")[0]
 
 var civ_color: Color
 var civ_name: String
+var city_name: String
 var current_production: int = 2
 var current_production_name: String = "Settler"
 var accumulated_production: int
@@ -12,10 +13,12 @@ var food: int = 1
 var needed_prod: int = 6
 
 func _ready() -> void:
+	change_name()
 	modulate = civ_color
 
-#func change_queue() -> void:
-#	print("We're making a settler!")
+func change_name() -> void:
+	var cities_number: int = get_parent().get_child_count()
+	city_name = GlobalData.cities_name[civ_name][cities_number - 1]
 
 func process_queue() -> void:
 	accumulated_production += current_production
@@ -32,6 +35,6 @@ func _on_Area2D_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton and event.pressed and event.button_index == BUTTON_LEFT:
 		city_interface.open({
 			"id" : self,
-			"city_name" : "Paris", 
+			"city_name" : city_name, 
 			"unit_in_production" : current_production_name,
 		})
