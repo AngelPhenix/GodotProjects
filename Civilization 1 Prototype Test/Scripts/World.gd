@@ -88,23 +88,28 @@ func init_civilizations(number_of_civs: int) -> void:
 ##		civ.get_node("Units").add_child(new_unit_two)
 
 	for civ in civs:
-		var new_unit: Node = explorer_unit.instance()
-		var new_unit_two: Node = settler_unit.instance()
+		var new_explo: Node = explorer_unit.instance()
+		var new_settler: Node = settler_unit.instance()
 		var ground_cells: Array = ($Map as TileMap).get_used_cells_by_id(GROUND)
 		var values: Dictionary = civilizations.get(civ.name)
 		
-		new_unit.civ_name = civ.name
-		new_unit.civ_color = values["color"]
+		new_explo.civ_name = civ.name
+		new_explo.civ_color = values["color"]
+		new_explo.attack = GlobalData.units_data["Explorer"]["attack"]
+		new_explo.hp = GlobalData.units_data["Explorer"]["hp"]
+		new_explo.total_movements = GlobalData.units_data["Explorer"]["moves"]
 		
-		new_unit_two.civ_name = civ.name
-		new_unit_two.civ_color = values["color"]
 		
-#		new_unit.modulate = values["color"]
-#		new_unit_two.modulate = values["color"]
-		new_unit.position = ($Map as TileMap).map_to_world(ground_cells[randi() % len(ground_cells)]) + Vector2(16, 16)
-		new_unit_two.position = ($Map as TileMap).map_to_world(ground_cells[randi() % len(ground_cells)]) + Vector2(16, 16)
-		civ.get_node("Units").add_child(new_unit_two)
-		civ.get_node("Units").add_child(new_unit)
+		new_settler.civ_name = civ.name
+		new_settler.civ_color = values["color"]
+		new_settler.attack = GlobalData.units_data["Settler"]["attack"]
+		new_settler.hp = GlobalData.units_data["Settler"]["hp"]
+		new_settler.total_movements = GlobalData.units_data["Settler"]["moves"]
+		
+		new_explo.position = ($Map as TileMap).map_to_world(ground_cells[randi() % len(ground_cells)]) + Vector2(16, 16)
+		new_settler.position = ($Map as TileMap).map_to_world(ground_cells[randi() % len(ground_cells)]) + Vector2(16, 16)
+		civ.get_node("Units").add_child(new_settler)
+		civ.get_node("Units").add_child(new_explo)
 	
 
 func start_turn() -> void:

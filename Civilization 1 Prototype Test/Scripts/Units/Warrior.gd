@@ -1,7 +1,7 @@
 extends NonPassiveUnit
 
 func _init() -> void:
-	vision_radius = 2
+	vision_radius = 1
 
 func _ready() -> void:
 	pass

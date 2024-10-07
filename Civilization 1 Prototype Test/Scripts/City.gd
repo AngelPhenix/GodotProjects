@@ -32,6 +32,9 @@ func process_queue() -> void:
 			new_unit.position = position
 			new_unit.civ_name = civ_name
 			new_unit.civ_color = civ_color
+			new_unit.attack = GlobalData.units_data[current_production_name]["attack"]
+			new_unit.hp = GlobalData.units_data[current_production_name]["hp"]
+			new_unit.total_movements = GlobalData.units_data[current_production_name]["moves"]
 			world.get_node(civ_name).get_node("Units").add_child(new_unit)
 			print("A " + current_production_name + " has been built by " + city_name)
 			accumulated_production = 0

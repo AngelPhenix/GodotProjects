@@ -8,13 +8,13 @@ onready var fow_map: TileMap = get_tree().get_root().get_node('/root/World/FOW')
 var movement: Vector2
 var tile_size: int
 var is_moving: bool = false
-var total_movements: int = 3
+var total_movements: int = 4
 var movements_left: int
 var animation_speed: float = .2
 
 # BASE UNIT VARIABLES FOR EVERY SINGLE UNIT IN THE GAME
-var defense: int
-var health: int
+var attack: int
+var hp: int
 var vision_radius: int
 var is_selected: bool = false
 

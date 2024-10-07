@@ -13,19 +13,19 @@ const units_data = {
 	"Settler": {
 		"attack":0, 
 		"hp":1, 
-		"movement":2, 
+		"moves":2, 
 		"production": 5
 	},
 	"Explorer": {
 		"attack":1, 
 		"hp":3, 
-		"movement":3, 
+		"moves":3, 
 		"production": 8
 	},
 	"Warrior": {
 		"attack": 3, 
 		"hp":5, 
-		"movement":2, 
+		"moves":2, 
 		"production": 10
 	}
 }
@@ -33,8 +33,7 @@ const units_data = {
 var discovered_units = {
 	"Settler": true,
 	"Explorer": true,
-	"Warrior": true,
-	"Archer": false
+	"Warrior": true
 }
 
 func is_unit_unlocked(unit_name: String) -> bool:
