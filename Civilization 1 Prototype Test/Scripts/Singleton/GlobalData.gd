@@ -33,7 +33,7 @@ const units_data = {
 var discovered_units = {
 	"Settler": true,
 	"Explorer": true,
-	"Warrior": false,
+	"Warrior": true,
 	"Archer": false
 }
 
@@ -74,7 +74,7 @@ const buildings_data = {
 }
 
 var discovered_buildings = {
-	"Granary": false,
+	"Granary": true,
 	"School": false,
 	"Barracks": false
 }
