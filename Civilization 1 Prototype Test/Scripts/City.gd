@@ -17,6 +17,7 @@ var built_buildings: Array
 
 func _ready() -> void:
 	change_name()
+	name = city_name
 	modulate = civ_color
 
 func change_name() -> void:
@@ -49,5 +50,6 @@ func _on_Area2D_input_event(viewport, event, shape_idx):
 		city_interface.open({
 			"id" : self,
 			"city_name" : city_name, 
-			"unit_in_production" : current_production_name,
+			"built_buildings" : built_buildings,
+			"unit_in_production" : current_production_name
 		})
