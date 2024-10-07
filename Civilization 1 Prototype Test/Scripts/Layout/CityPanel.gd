@@ -15,25 +15,26 @@ func open(city_info: Dictionary) -> void:
 
 
 func _on_Change_pressed():
-	# Builds the list of possible things to build by the city
-	var available_production = []
-	for unit_name in GlobalData.units_data.keys():
-		if GlobalData.is_unit_unlocked(unit_name):
-			available_production.append(unit_name)
-	for building_name in GlobalData.buildings_data.keys():
-		if GlobalData.is_building_unlocked(building_name):
-			available_production.append(building_name)
-	
-	# Takes the already built list of possible things to build to erase buildings already built
-	# So it's not possible to be built a second time
-	var to_remove = []
-	for production in available_production:
-		if built_buildings.has(production):
-			to_remove.append(production)
-	for item in to_remove:
-		available_production.erase(item)
+	if $ProdContainer.visible == false: 
+		# Builds the list of possible things to build by the city
+		var available_production = []
+		for unit_name in GlobalData.units_data.keys():
+			if GlobalData.is_unit_unlocked(unit_name):
+				available_production.append(unit_name)
+		for building_name in GlobalData.buildings_data.keys():
+			if GlobalData.is_building_unlocked(building_name):
+				available_production.append(building_name)
 		
-	display_available_production(available_production)
+		# Takes the already built list of possible things to build to erase buildings already built
+		# So it's not possible to be built a second time
+		var to_remove = []
+		for production in available_production:
+			if built_buildings.has(production):
+				to_remove.append(production)
+		for item in to_remove:
+			available_production.erase(item)
+			
+		display_available_production(available_production)
 
 func display_available_production(available_prod: Array):
 	for prod_name in available_prod:
