@@ -11,14 +11,9 @@ func open(city_info: Dictionary) -> void:
 	$UnitPanel/Name.text = "Production : " + city_info["unit_in_production"]
 	visible = true
 
-func _on_Exit_pressed():
-	visible = false
-	$ProdContainer.visible = false
-
 
 func _on_Change_pressed():
 	var available_production = []
-	
 	for unit_name in GlobalData.units_data.keys():
 		if GlobalData.is_unit_unlocked(unit_name):
 			available_production.append(unit_name)
@@ -39,3 +34,10 @@ func display_available_production(available_prod: Array):
 
 func production_changed(new_prod_name: String) -> void:
 	$UnitPanel/Name.text = "Production : " + new_prod_name
+
+func reset_panels() -> void:
+	visible = false
+	$ProdContainer.visible = false
+
+func _on_Exit_pressed():
+	reset_panels()

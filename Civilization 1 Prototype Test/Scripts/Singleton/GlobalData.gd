@@ -40,7 +40,7 @@ const buildings_data = {
 }
 
 var discovered_buildings = {
-	"Granary": false,
+	"Granary": true,
 	"School": false
 }
 
