@@ -1,6 +1,10 @@
 extends Node
 
-
+const cities_name = {
+	"France": ["Paris", "Marseille", "Lyon", "Toulouse", "Nice", "Nantes", "Strasbourg", "Montpellier", "Bordeaux", "Lille", "Rennes", "Reims", "Le Havre", "Saint-Etienne", "Toulon", "Grenoble", "Dijon", "Angers", "Nimes", "Aix-En-Provence"],
+	"Italy": ["Rome", "Milan", "Naples", "Turin", "Florence", "Venice", "Bologna", "Genoa", "Palermo", "Verona", "Catania", "Bari", "Trieste", "Parma", "Perugia", "Modena", "Ravenna", "Reggio Calabria", "Siena", "Pisa"],
+	"Germany": ["Berlin", "Hamburg", "Munich", "Cologne", "Frankfurt", "Stuttgart", "Düsseldoft", "Leipzig", "Dortmund", "Essen", "Bremen", "Desden", "Hannover", "Nuremberg", "Mannheim", "Kiel", "Freiburg", "Augsburg", "Mainz", "Wiesbaden"]
+}
 
 
 

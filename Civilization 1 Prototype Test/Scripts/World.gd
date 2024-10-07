@@ -17,13 +17,18 @@ var current_civ: Node
 # Currently playing unit
 var current_unit: Node
 # Civilization Dictionary
+#var civilizations: Dictionary = {"France" : {"color" : Color(0.148788, 0.556367, 0.777344)},
+#	"Aztec" : {"color" : Color(0.188235, 0.729412, 0.309804)},
+#	"America" : {"color" : Color(0.776471, 0.396078, 0.592157)},
+#	"Japan" : {"color" : Color(1,1,1)},
+#	"Egypt" : {"color" : Color(0.807843, 0.745098, 0.078431)},
+#	"Somalia" : {"color" : Color(0.721569, 0.12549, 0.686275)},
+#	"Peru" : {"color" : Color(0.679688, 0.244263, 0.244263)}
+#}
+
 var civilizations: Dictionary = {"France" : {"color" : Color(0.148788, 0.556367, 0.777344)},
-	"Aztec" : {"color" : Color(0.188235, 0.729412, 0.309804)},
-	"America" : {"color" : Color(0.776471, 0.396078, 0.592157)},
-	"Japan" : {"color" : Color(1,1,1)},
-	"Egypt" : {"color" : Color(0.807843, 0.745098, 0.078431)},
-	"Somalia" : {"color" : Color(0.721569, 0.12549, 0.686275)},
-	"Peru" : {"color" : Color(0.679688, 0.244263, 0.244263)}
+	"Italy" : {"color" : Color(0.188235, 0.729412, 0.309804)},
+	"Germany" : {"color" : Color(0.776471, 0.396078, 0.592157)}
 }
 
 signal city_clicked(city_data)

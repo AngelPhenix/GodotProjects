@@ -13,12 +13,10 @@ func open(city_info: Dictionary) -> void:
 
 func _on_Exit_pressed():
 	visible = false
-	for node in prod_list.get_children():
-		node.queue_free()
+	$ProdContainer.visible = false
 
 
 func _on_Change_pressed():
-	# OPEN PANEL TO CHANGE PRODUCTION UNIT OF THE CITY SELECTED
 	var available_production = []
 	
 	for unit_name in GlobalData.units_data.keys():
