@@ -43,6 +43,10 @@ run/main_scene="res://Stages/World.tscn"
 boot_splash/bg_color=Color( 0, 0, 0, 1 )
 config/icon="res://icon.png"
 
+[autoload]
+
+GlobalData="*res://Scripts/Singleton/GlobalData.gd"
+
 [debug]
 
 gdscript/warnings/enable=false

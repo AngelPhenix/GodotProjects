@@ -27,7 +27,7 @@ func process_queue() -> void:
 		world.get_node(civ_name).get_node("Units").add_child(new_unit)
 		accumulated_production = 0
 
-
+# WHEN THE CITY'S SPRITE IS CLICKED, OPEN THE WINDOW TO INTERACT WITH IT
 func _on_Area2D_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton and event.pressed and event.button_index == BUTTON_LEFT:
 		city_interface.open({
