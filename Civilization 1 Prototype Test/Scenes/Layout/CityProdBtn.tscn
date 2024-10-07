@@ -1,0 +1,8 @@
+[gd_scene format=2]
+
+[node name="Button" type="Button"]
+margin_right = 309.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+size_flags_vertical = 0
+text = "Settler (0/2/2)"
