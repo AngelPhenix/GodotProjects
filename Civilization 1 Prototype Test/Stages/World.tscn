@@ -80,5 +80,5 @@ format = 1
 [node name="Camera" type="Camera2D" parent="."]
 current = true
 
-[node name="CityPanel" parent="." groups=["city_interface"] instance=ExtResource( 5 )]
+[node name="CityPanel" parent="." instance=ExtResource( 5 )]
 visible = false

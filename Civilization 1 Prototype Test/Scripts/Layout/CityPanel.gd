@@ -1,15 +1,20 @@
 extends CanvasLayer
 
 onready var prod_list = get_tree().get_nodes_in_group("production_list")[0]
+onready var prod_btn: PackedScene = preload("res://Scenes/Layout/CityProdBtn.tscn")
+
+var city
 
 func open(city_info: Dictionary) -> void:
+	city = city_info["id"]
 	$NamePanel/Name.text = city_info["city_name"]
 	$UnitPanel/Name.text = "Production : " + city_info["unit_in_production"]
-#	city_info["id"].current_production_name = "Archer"
 	visible = true
 
 func _on_Exit_pressed():
 	visible = false
+	for node in prod_list.get_children():
+		node.queue_free()
 
 
 func _on_Change_pressed():
@@ -27,6 +32,12 @@ func _on_Change_pressed():
 
 func display_available_production(available_prod: Array):
 	for prod_name in available_prod:
-		var new_option: Button = Button.new()
-		new_option.text = prod_name
-		pass
+		var new_option: Button = prod_btn.instance()
+		new_option.prod_name = prod_name
+		new_option.city = city
+		prod_list.add_child(new_option)
+	
+	$ProdContainer.visible = true
+
+func production_changed(new_prod_name: String) -> void:
+	$UnitPanel/Name.text = "Production : " + new_prod_name
