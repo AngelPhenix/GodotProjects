@@ -26,7 +26,7 @@ const units_data = {
 		"attack": 3, 
 		"hp":5, 
 		"movement":2, 
-		"production:": 10
+		"production": 10
 	}
 }
 
