@@ -142,13 +142,3 @@ func process_cities() -> void:
 	for city in get_tree().get_nodes_in_group('city'):
 		if city.has_method('process_queue'):
 			city.process_queue()
-
-func ask_city_name(player_civ: String, affected_city: Node) -> void:
-	$CityPopup.show_city_popup(player_civ, affected_city)
-	get_tree().paused = true
-
-func confirm_city_name(city_name: String, affected_city: Node) -> void:
-	affected_city.city_name = city_name
-	affected_city.name = city_name
-	$CityPopup.visible = false
-	
