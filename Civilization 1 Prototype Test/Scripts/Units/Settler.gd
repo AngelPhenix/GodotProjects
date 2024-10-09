@@ -7,14 +7,15 @@ func _init() -> void:
 
 func _ready() -> void:
 	pass
-#	defense = 0
-#	total_movements = 2
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("build") and state == unit_state.PLAYING:
 		build_city(position)
 
 func build_city(settlers_position: Vector2) -> void:
+	for city in get_tree().get_nodes_in_group('city'):
+		if position == city.position:
+			return
 	var new_city: Node = city_scn.instance()
 	new_city.civ_color = civ_color
 	new_city.civ_name = civ_name
