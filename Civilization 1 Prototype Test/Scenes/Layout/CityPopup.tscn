@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Scripts/Layout/CityPopup.gd" type="Script" id=1]
 
-[node name="CityPopup" type="CanvasLayer"]
+[node name="CityPopup" type="CanvasLayer" groups=["built_city_popup"]]
 pause_mode = 2
 script = ExtResource( 1 )
 

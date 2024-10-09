@@ -145,3 +145,6 @@ func process_cities() -> void:
 
 func confirm_city_name(city_name: String, affected_city: Node) -> void:
 	affected_city.city_name = city_name
+	affected_city.name = city_name
+	$CityPopup.visible = false
+	

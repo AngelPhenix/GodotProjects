@@ -2,7 +2,7 @@ extends Node2D
 
 onready var world = get_tree().get_nodes_in_group("world")[0]
 onready var city_interface = get_tree().get_nodes_in_group("city_interface")[0]
-onready var city_popup: PackedScene = preload("res://Scenes/Layout/CityPopup.tscn")
+onready var city_popup = get_tree().get_nodes_in_group("built_city_popup")[0]
 
 var civ_color: Color
 var civ_name: String
@@ -18,12 +18,10 @@ var built_buildings: Array
 
 func _ready() -> void:
 	ask_name()
-#	change_name()
-	name = city_name
 	modulate = civ_color
 
 func ask_name() -> void:
-	city_popup.show()
+	city_popup.visible = true
 	city_popup.city_id = self
 	get_tree().paused = true
 
