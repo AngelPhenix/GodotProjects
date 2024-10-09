@@ -1,0 +1,22 @@
+[gd_scene format=2]
+
+[node name="Popup" type="CanvasLayer"]
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -275.5
+margin_top = -41.0
+margin_right = 275.5
+margin_bottom = 41.0
+
+[node name="Label" type="Label" parent="PanelContainer"]
+margin_left = 7.0
+margin_top = 34.0
+margin_right = 544.0
+margin_bottom = 48.0
+align = 1
+valign = 1
+autowrap = true
