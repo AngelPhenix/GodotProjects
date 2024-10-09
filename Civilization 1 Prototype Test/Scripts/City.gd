@@ -21,6 +21,11 @@ func _ready() -> void:
 	modulate = civ_color
 
 func change_name() -> void:
+	# Demander au joueur le nom de la ville
+	# Afficher le nom de la ville disponible qui est toujours dans la liste avec "GlobalData.cities_name[civ_name][0]"
+	# à l'intérieur de la boxe de confirmation
+	# Si nom confirmé (changé ou pas) est == à index 0 de cities_name, pop_front() l'array. 
+	# Sinon, ne rien faire avec l'array et simplement donner le nom entré par le joueur.
 	var cities_number: int = get_parent().get_child_count()
 	city_name = GlobalData.cities_name[civ_name][cities_number - 1]
 
