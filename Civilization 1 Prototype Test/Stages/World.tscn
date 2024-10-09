@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Scripts/World.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/WaterTile.png" type="Texture" id=2]
 [ext_resource path="res://Sprites/GrassTile.png" type="Texture" id=3]
 [ext_resource path="res://Sprites/FowTile.png" type="Texture" id=4]
 [ext_resource path="res://Scenes/Layout/CityPanel.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/Layout/CityPopup.tscn" type="PackedScene" id=6]
 
 [sub_resource type="NavigationPolygon" id=1]
 vertices = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
@@ -81,4 +82,7 @@ format = 1
 current = true
 
 [node name="CityPanel" parent="." instance=ExtResource( 5 )]
+visible = false
+
+[node name="CityPopup" parent="." instance=ExtResource( 6 )]
 visible = false

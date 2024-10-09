@@ -1,0 +1,47 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Scripts/Layout/CityPopup.gd" type="Script" id=1]
+
+[node name="CityPopup" type="CanvasLayer"]
+pause_mode = 2
+script = ExtResource( 1 )
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -148.5
+margin_top = -60.0
+margin_right = 148.5
+margin_bottom = 60.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 290.0
+margin_bottom = 113.0
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer"]
+margin_right = 283.0
+margin_bottom = 14.0
+text = "Give a name to your new city"
+align = 1
+
+[node name="Name" type="LineEdit" parent="PanelContainer/VBoxContainer" groups=["newcityname"]]
+margin_top = 18.0
+margin_right = 283.0
+margin_bottom = 82.0
+size_flags_vertical = 3
+text = "Paris"
+align = 1
+caret_blink = true
+caret_blink_speed = 0.5
+
+[node name="Button" type="Button" parent="PanelContainer/VBoxContainer"]
+margin_top = 86.0
+margin_right = 283.0
+margin_bottom = 106.0
+text = "Build"
+
+[connection signal="pressed" from="PanelContainer/VBoxContainer/Button" to="." method="_on_Button_pressed"]

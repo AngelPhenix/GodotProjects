@@ -15,7 +15,7 @@ func _input(event: InputEvent) -> void:
 
 func build_city(settlers_position: Vector2) -> void:
 	if world.has_method("city_prompt"):
-		world.city_prompt()
+		var new_city_name: String = world.city_prompt()
 		
 		for city in get_tree().get_nodes_in_group('city'):
 			if position == city.position:

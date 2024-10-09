@@ -2,6 +2,7 @@ extends Node2D
 
 onready var world = get_tree().get_nodes_in_group("world")[0]
 onready var city_interface = get_tree().get_nodes_in_group("city_interface")[0]
+onready var city_popup: PackedScene = preload("res://Scenes/Layout/CityPopup.tscn")
 
 var civ_color: Color
 var civ_name: String
@@ -16,9 +17,15 @@ var science: int = 1
 var built_buildings: Array
 
 func _ready() -> void:
-	change_name()
+	ask_name()
+#	change_name()
 	name = city_name
 	modulate = civ_color
+
+func ask_name() -> void:
+	city_popup.show()
+	city_popup.city_id = self
+	get_tree().paused = true
 
 func change_name() -> void:
 	# Demander au joueur le nom de la ville

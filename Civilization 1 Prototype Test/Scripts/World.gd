@@ -143,6 +143,5 @@ func process_cities() -> void:
 		if city.has_method('process_queue'):
 			city.process_queue()
 
-func city_prompt() -> void:
-	
-	pass
+func confirm_city_name(city_name: String, affected_city: Node) -> void:
+	affected_city.city_name = city_name
