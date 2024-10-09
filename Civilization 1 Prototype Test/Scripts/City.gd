@@ -18,11 +18,9 @@ var built_buildings: Array
 
 func _ready() -> void:
 	ask_name()
-	modulate = civ_color
 
 func ask_name() -> void:
-	city_popup.visible = true
-	city_popup.city_id = self
+	city_popup.show_city_popup(civ_name, self)
 	get_tree().paused = true
 
 func change_name() -> void:
