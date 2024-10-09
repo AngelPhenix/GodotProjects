@@ -7,7 +7,6 @@ const cities_name = {
 }
 
 
-
 ############ UNITS ############
 const units_data = {
 	"Settler": {

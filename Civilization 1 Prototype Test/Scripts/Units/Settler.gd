@@ -23,4 +23,5 @@ func build_city(settlers_position: Vector2) -> void:
 	new_city.modulate = civ_color
 	new_city.position = settlers_position
 	get_tree().get_nodes_in_group("world")[0].get_node(civ_name).get_node("Cities").add_child(new_city)
+	world.ask_city_name(civ_name, new_city)
 	killed()

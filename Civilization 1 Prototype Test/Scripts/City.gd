@@ -16,22 +16,6 @@ var science: int = 1
 
 var built_buildings: Array
 
-func _ready() -> void:
-	ask_name()
-
-func ask_name() -> void:
-	city_popup.show_city_popup(civ_name, self)
-	get_tree().paused = true
-
-func change_name() -> void:
-	# Demander au joueur le nom de la ville
-	# Afficher le nom de la ville disponible qui est toujours dans la liste avec "GlobalData.cities_name[civ_name][0]"
-	# à l'intérieur de la boxe de confirmation
-	# Si nom confirmé (changé ou pas) est == à index 0 de cities_name, pop_front() l'array. 
-	# Sinon, ne rien faire avec l'array et simplement donner le nom entré par le joueur.
-	var cities_number: int = get_parent().get_child_count()
-	city_name = GlobalData.cities_name[civ_name][cities_number - 1]
-
 func process_queue() -> void:
 	accumulated_production += production
 	if GlobalData.units_data.has(current_production_name):
