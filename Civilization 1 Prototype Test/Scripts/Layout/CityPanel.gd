@@ -6,11 +6,18 @@ onready var prod_btn: PackedScene = preload("res://Scenes/Layout/CityProdBtn.tsc
 var city
 var built_buildings
 
-func open(city_info: Dictionary) -> void:
-	city = city_info["id"]
-	built_buildings = city_info["built_buildings"]
-	$NamePanel/Name.text = city_info["city_name"]
-	$UnitPanel/Name.text = "Production : " + city_info["unit_in_production"]
+#func open(city_info: Dictionary) -> void:
+#	city = city_info["id"]
+#	built_buildings = city_info["built_buildings"]
+#	$NamePanel/Name.text = city_info["city_name"]
+#	$UnitPanel/Name.text = "Production : " + city_info["unit_in_production"]
+#	visible = true
+
+func open(city_node: Node) -> void:
+	city = city_node
+	built_buildings = city.built_buildings
+	$NamePanel/Name.text = city.city_name
+	$UnitPanel/Name.text = "Production : " + city.current_production_name
 	visible = true
 
 

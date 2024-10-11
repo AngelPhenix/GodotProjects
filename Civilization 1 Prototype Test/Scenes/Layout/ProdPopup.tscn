@@ -26,7 +26,7 @@ alignment = 1
 
 [node name="Label" type="Label" parent="PanelContainer/VBoxContainer"]
 margin_right = 283.0
-margin_bottom = 82.0
+margin_bottom = 102.0
 size_flags_vertical = 3
 text = "Paris finished building a Settler"
 align = 1
@@ -34,23 +34,24 @@ valign = 1
 autowrap = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer"]
-margin_top = 86.0
+margin_top = 106.0
 margin_right = 283.0
 margin_bottom = 106.0
 alignment = 2
 
-[node name="Change" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer"]
-margin_right = 139.0
-margin_bottom = 20.0
-size_flags_horizontal = 3
-text = "Change"
-
 [node name="Rebuild" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer"]
-margin_left = 143.0
-margin_right = 283.0
+visible = false
+margin_right = 139.0
 margin_bottom = 20.0
 size_flags_horizontal = 3
 text = "Re-Build"
 
-[connection signal="pressed" from="PanelContainer/VBoxContainer/HBoxContainer/Change" to="." method="_on_Change_pressed"]
+[node name="Change" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer"]
+visible = false
+margin_right = 283.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+text = "Change"
+
 [connection signal="pressed" from="PanelContainer/VBoxContainer/HBoxContainer/Rebuild" to="." method="_on_Rebuild_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/HBoxContainer/Change" to="." method="_on_Change_pressed"]

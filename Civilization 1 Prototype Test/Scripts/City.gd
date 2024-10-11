@@ -3,6 +3,7 @@ extends Node2D
 onready var world = get_tree().get_nodes_in_group("world")[0]
 onready var city_interface = get_tree().get_nodes_in_group("city_interface")[0]
 onready var city_popup = get_tree().get_nodes_in_group("built_city_popup")[0]
+onready var prod_popup = preload("res://Scenes/Layout/ProdPopup.tscn")
 
 var civ_color: Color
 var civ_name: String
@@ -28,7 +29,9 @@ func process_queue() -> void:
 			new_unit.hp = GlobalData.units_data[current_production_name]["hp"]
 			new_unit.total_movements = GlobalData.units_data[current_production_name]["moves"]
 			world.get_node(civ_name).get_node("Units").add_child(new_unit)
-			print("A " + current_production_name + " has been built by " + city_name)
+			
+			_display_prod_finished(city_name, current_production_name)
+			
 			accumulated_production = 0
 	if GlobalData.buildings_data.has(current_production_name):
 		if accumulated_production >= GlobalData.buildings_data.get(current_production_name)["production"]:
@@ -36,16 +39,19 @@ func process_queue() -> void:
 			food += GlobalData.buildings_data.get(current_production_name)["food_bonus"]
 			production += GlobalData.buildings_data.get(current_production_name)["production_bonus"]
 			science += GlobalData.buildings_data.get(current_production_name)["science_bonus"]
-			print("The " + current_production_name + " has been built by " + city_name)
+			
+			_display_prod_finished(city_name, current_production_name)
+			current_production_name = "Settler"
 			accumulated_production = 0
 
 # WHEN THE CITY'S SPRITE IS CLICKED, OPEN THE WINDOW TO INTERACT WITH IT
 func _on_Area2D_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton and event.pressed and event.button_index == BUTTON_LEFT:
 		get_tree().paused = true
-		city_interface.open({
-			"id" : self,
-			"city_name" : city_name, 
-			"built_buildings" : built_buildings,
-			"unit_in_production" : current_production_name
-		})
+		city_interface.open(self)
+
+func _display_prod_finished(city_name: String, current_production_name: String) -> void:
+	var popup: Node = prod_popup.instance()
+	popup.city = self
+	popup.change_message(city_name, current_production_name)
+	add_child(popup)
