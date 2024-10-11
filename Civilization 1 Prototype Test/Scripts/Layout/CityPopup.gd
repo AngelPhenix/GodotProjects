@@ -29,6 +29,7 @@ func _on_Button_pressed() -> void:
 	city_id.name = given_name_by_player
 	city_name_popup.visible = false
 	get_tree().paused = false
+	world.get_next_unit(player_civ)
 
 func _names_still_available() -> bool:
 	return GlobalData.cities_name[player_civ].size() > 0

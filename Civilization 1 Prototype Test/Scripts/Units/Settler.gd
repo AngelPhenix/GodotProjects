@@ -7,9 +7,6 @@ onready var city_name_popup = get_tree().get_nodes_in_group("built_city_popup")[
 func _init() -> void:
 	vision_radius = 1
 
-func _ready() -> void:
-	pass
-
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("build") and state == unit_state.PLAYING:
 		build_city(position)
@@ -25,4 +22,4 @@ func build_city(settlers_position: Vector2) -> void:
 	new_city.position = settlers_position
 	get_tree().get_nodes_in_group("world")[0].get_node(civ_name).get_node("Cities").add_child(new_city)
 	city_name_popup.show_city_popup(civ_name, new_city)
-	killed()
+	queue_free()
