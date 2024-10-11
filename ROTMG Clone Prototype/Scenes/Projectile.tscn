@@ -5,6 +5,7 @@
 
 [node name="Projectile" type="Node2D"]
 position = Vector2( 498, 261 )
+scale = Vector2( 0.25, 0.25 )
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_group_": true
