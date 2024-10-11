@@ -59,3 +59,4 @@ func clear_production_list() -> void:
 func _on_Exit_pressed():
 	clear_production_list()
 	reset_panels()
+	get_tree().paused = false

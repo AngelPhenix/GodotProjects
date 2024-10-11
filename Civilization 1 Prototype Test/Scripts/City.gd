@@ -42,6 +42,7 @@ func process_queue() -> void:
 # WHEN THE CITY'S SPRITE IS CLICKED, OPEN THE WINDOW TO INTERACT WITH IT
 func _on_Area2D_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton and event.pressed and event.button_index == BUTTON_LEFT:
+		get_tree().paused = true
 		city_interface.open({
 			"id" : self,
 			"city_name" : city_name, 
