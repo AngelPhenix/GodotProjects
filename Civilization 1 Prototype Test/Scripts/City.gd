@@ -36,12 +36,9 @@ func process_queue() -> void:
 	if GlobalData.buildings_data.has(current_production_name):
 		if accumulated_production >= GlobalData.buildings_data.get(current_production_name)["production"]:
 			built_buildings.append(current_production_name)
-			food += GlobalData.buildings_data.get(current_production_name)["food_bonus"]
-			production += GlobalData.buildings_data.get(current_production_name)["production_bonus"]
-			science += GlobalData.buildings_data.get(current_production_name)["science_bonus"]
-			
+			_add_bonus_from_building()
 			_display_prod_finished(city_name, current_production_name)
-			current_production_name = "Settler"
+			reset_production()
 			accumulated_production = 0
 
 # WHEN THE CITY'S SPRITE IS CLICKED, OPEN THE WINDOW TO INTERACT WITH IT
@@ -55,3 +52,11 @@ func _display_prod_finished(city_name: String, current_production_name: String) 
 	popup.city = self
 	popup.change_message(city_name, current_production_name)
 	add_child(popup)
+
+func reset_production() -> void:
+	current_production_name = "Settler"
+
+func _add_bonus_from_building() -> void:
+	food += GlobalData.buildings_data.get(current_production_name)["food_bonus"]
+	production += GlobalData.buildings_data.get(current_production_name)["production_bonus"]
+	science += GlobalData.buildings_data.get(current_production_name)["science_bonus"]
