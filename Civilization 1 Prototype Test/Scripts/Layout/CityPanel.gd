@@ -52,5 +52,10 @@ func reset_panels() -> void:
 	visible = false
 	$ProdContainer.visible = false
 
+func clear_production_list() -> void:
+	for node in prod_list.get_children():
+		node.queue_free()
+
 func _on_Exit_pressed():
+	clear_production_list()
 	reset_panels()

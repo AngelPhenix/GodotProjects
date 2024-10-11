@@ -17,5 +17,4 @@ func change_production_queue(production: String) -> void:
 	city_interface.production_changed(production)
 	production_list.get_parent().visible = false
 	
-	for node in production_list.get_children():
-		node.queue_free()
+	city_interface.clear_production_list()
