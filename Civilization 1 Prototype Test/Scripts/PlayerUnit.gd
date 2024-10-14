@@ -47,6 +47,10 @@ func _physics_process(delta: float) -> void:
 		movement_loop()
 	state_loop()
 
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("switch_unit") and state == unit_state.PLAYING:
+		print("Switch the units !")
+
 func state_loop():
 	if state == unit_state.PLAYING && movement != Vector2.ZERO:
 		change_state(unit_state.MOVING)
