@@ -1,7 +1,6 @@
 extends PassiveUnit
 
 onready var city_scn: PackedScene = preload("res://Scenes/City.tscn")
-onready var world = get_tree().get_nodes_in_group("world")[0]
 onready var city_name_popup = get_tree().get_nodes_in_group("built_city_popup")[0]
 
 func _init() -> void:

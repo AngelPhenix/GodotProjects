@@ -12,6 +12,8 @@ var civs: Array
 enum {WATER, GROUND}
 # Index to change civilization !
 var index: int = 0
+# Index to keep track of the selected unit !
+var unit_index: int = 0
 # Currently playing civilization
 var current_civ: Node
 # Currently playing unit
@@ -132,6 +134,19 @@ func get_next_unit(civ: Node) -> void:
 	else:
 		start_turn()
 
+func loop_through_units() -> void:
+	if current_civ.get_node("Units").get_child_count() > 0:
+		for unit in current_civ.get_node("Units").get_children():
+			if unit.state != unit.unit_state.STOPPED:
+				unit.state = unit.unit_state.WAITING
+		
+		if unit_index > current_civ.get_node("Units").get_child_count() - 1:
+			unit_index = 0
+		else:
+			unit_index +=1
+
+		var new_selected_unit: Node = current_civ.get_node("Units").get_children()[unit_index]
+	
 func reset_units() -> void:
 	for node in get_tree().get_nodes_in_group("units"):
 		for unit in node.get_children():

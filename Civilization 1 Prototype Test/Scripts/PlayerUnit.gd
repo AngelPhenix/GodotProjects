@@ -1,6 +1,7 @@
 extends KinematicBody2D
 class_name PlayerUnit
 
+onready var world: Node = get_tree().get_nodes_in_group("world")[0]
 onready var map: TileMap = get_tree().get_root().get_node("/root/World/Map")
 onready var fow_map: TileMap = get_tree().get_root().get_node('/root/World/FOW')
 
@@ -49,7 +50,7 @@ func _physics_process(delta: float) -> void:
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("switch_unit") and state == unit_state.PLAYING:
-		print("Switch the units !")
+		loop_playable_units()
 
 func state_loop():
 	if state == unit_state.PLAYING && movement != Vector2.ZERO:
@@ -62,6 +63,8 @@ func state_loop():
 func change_state(new_state: int) -> void:
 	state = new_state
 	match state:
+		unit_state.WAITING:
+			($anim as AnimationPlayer).stop()
 		unit_state.PLAYING:
 			($anim as AnimationPlayer).play("idle")
 		unit_state.MOVING:
@@ -110,6 +113,9 @@ func clear_fog_at(unit_position: Vector2) -> void:
 func killed() -> void:
 	emit_signal("change_unit")
 	queue_free()
+
+func loop_playable_units() -> void:
+	world.loop_through_units()
 
 # Unit moving, stop flickering animation and inputs.
 func _on_tween_tween_started(object: Object, key: NodePath) -> void:
