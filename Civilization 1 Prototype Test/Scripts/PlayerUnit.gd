@@ -69,6 +69,7 @@ func change_state(new_state: int) -> void:
 	state = new_state
 	match state:
 		unit_state.WAITING:
+			$sprite.visible = true
 			($anim as AnimationPlayer).stop()
 		unit_state.PLAYING:
 			($anim as AnimationPlayer).play("idle")
