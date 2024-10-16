@@ -161,6 +161,10 @@ func loop_through_units() -> void:
 		var new_selected_unit: Node = playable_units[unit_index]
 		new_selected_unit.change_state(new_selected_unit.unit_state.PLAYING)
 		$Camera.position = new_selected_unit.global_position
+
+func erase_from_playable_units(unit_entity: Node) -> void:
+	
+	pass
 	
 func reset_units() -> void:
 	for node in get_tree().get_nodes_in_group("units"):

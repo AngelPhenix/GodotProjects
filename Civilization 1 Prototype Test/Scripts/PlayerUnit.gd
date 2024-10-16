@@ -52,7 +52,7 @@ func _physics_process(delta: float) -> void:
 func _input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("switch_unit") and state == unit_state.PLAYING and GlobalData.can_switch_unit:
 		GlobalData.can_switch_unit = false
-		loop_playable_units()
+		world.loop_through_units()
 		yield(get_tree().create_timer(0.1), "timeout")
 		GlobalData.can_switch_unit = true
 
@@ -115,13 +115,6 @@ func clear_fog_at(unit_position: Vector2) -> void:
 	for x in range(unit_tile_position.x - vision_radius, unit_tile_position.x + (vision_radius+1)):
 		for y in range(unit_tile_position.y - vision_radius, unit_tile_position.y + (vision_radius+1)):
 			fow_map.set_cell(x, y, -1)
-
-func killed() -> void:
-	emit_signal("change_unit")
-	queue_free()
-
-func loop_playable_units() -> void:
-	world.loop_through_units()
 
 # Unit moving, stop flickering animation and inputs.
 func _on_tween_tween_started(object: Object, key: NodePath) -> void:
