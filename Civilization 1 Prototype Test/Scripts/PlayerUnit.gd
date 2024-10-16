@@ -27,6 +27,7 @@ var civ_color: Color
 var state: int
 enum unit_state {STOPPED, PLAYING, WAITING, MOVING}
 signal change_unit
+var can_switch_unit: bool = true
 
 # ENVIRONMENT VARIABLES
 var terrain: int
@@ -49,8 +50,12 @@ func _physics_process(delta: float) -> void:
 	state_loop()
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("switch_unit") and state == unit_state.PLAYING:
+	if Input.is_action_just_pressed("switch_unit") and state == unit_state.PLAYING and GlobalData.can_switch_unit:
+		print("Unit calling the switch is : " + str(self))
+		GlobalData.can_switch_unit = false
 		loop_playable_units()
+		yield(get_tree().create_timer(0.2), "timeout")
+		GlobalData.can_switch_unit = true
 
 func state_loop():
 	if state == unit_state.PLAYING && movement != Vector2.ZERO:

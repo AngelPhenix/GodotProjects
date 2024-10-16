@@ -1,5 +1,7 @@
 extends Node
 
+var can_switch_unit: bool = true
+
 const cities_name = {
 	"France": ["Paris", "Marseille", "Lyon", "Toulouse", "Nice", "Nantes", "Strasbourg", "Montpellier", "Bordeaux", "Lille", "Rennes", "Reims", "Le Havre", "Saint-Etienne", "Toulon", "Grenoble", "Dijon", "Angers", "Nimes", "Aix-En-Provence"],
 	"Italy": ["Rome", "Milan", "Naples", "Turin", "Florence", "Venice", "Bologna", "Genoa", "Palermo", "Verona", "Catania", "Bari", "Trieste", "Parma", "Perugia", "Modena", "Ravenna", "Reggio Calabria", "Siena", "Pisa"],
