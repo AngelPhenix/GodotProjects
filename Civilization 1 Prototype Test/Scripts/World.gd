@@ -18,6 +18,9 @@ var unit_index: int = 0
 var current_civ: Node
 # Currently playing unit
 var current_unit: Node
+
+var playable_units: Array
+
 # Civilization Dictionary
 #var civilizations: Dictionary = {"France" : {"color" : Color(0.148788, 0.556367, 0.777344)},
 #	"Aztec" : {"color" : Color(0.188235, 0.729412, 0.309804)},
@@ -134,6 +137,8 @@ func get_next_unit(civ: Node) -> void:
 	for unit in current_civ.get_node("Units").get_children():
 		if unit.state == unit.unit_state.WAITING:
 			unit.state = unit.unit_state.PLAYING
+			unit_index = playable_units.find(unit)
+			print(unit_index)
 			$Camera.position = unit.global_position
 			return
 	if index + 1 < len(civs):
@@ -144,13 +149,10 @@ func get_next_unit(civ: Node) -> void:
 		start_turn()
 
 func loop_through_units() -> void:
-	var playable_units: Array
-	if current_civ.get_node("Units").get_child_count() > 0:
-		for unit in current_civ.get_node("Units").get_children():
-			if unit.state != unit.unit_state.STOPPED:
-				unit.change_state(unit.unit_state.WAITING)
-				playable_units.append(unit)
-		
+	if playable_units.size() > 0:
+		for unit in playable_units:
+			unit.change_state(unit.unit_state.WAITING)
+
 		if unit_index >= playable_units.size() - 1:
 			unit_index = 0
 		else:
@@ -165,6 +167,7 @@ func reset_units() -> void:
 		for unit in node.get_children():
 			unit.state = unit.unit_state.WAITING
 			unit.movements_left = unit.total_movements
+			playable_units.append(unit)
 
 func process_cities() -> void:
 	for city in get_tree().get_nodes_in_group('city'):
