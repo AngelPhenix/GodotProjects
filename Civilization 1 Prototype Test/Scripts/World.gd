@@ -135,18 +135,19 @@ func get_next_unit(civ: Node) -> void:
 		start_turn()
 
 func loop_through_units() -> void:
-	print("Function called")
+	var playable_units: Array
 	if current_civ.get_node("Units").get_child_count() > 0:
 		for unit in current_civ.get_node("Units").get_children():
 			if unit.state != unit.unit_state.STOPPED:
 				unit.change_state(unit.unit_state.WAITING)
+				playable_units.append(unit)
 		
-		if unit_index >= current_civ.get_node("Units").get_child_count() - 1:
+		if unit_index >= playable_units.size() - 1:
 			unit_index = 0
 		else:
 			unit_index +=1
 
-		var new_selected_unit: Node = current_civ.get_node("Units").get_children()[unit_index]
+		var new_selected_unit: Node = playable_units[unit_index]
 		new_selected_unit.change_state(new_selected_unit.unit_state.PLAYING)
 		$Camera.position = new_selected_unit.global_position
 	
