@@ -1,44 +1,23 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=4 format=3 uid="uid://dxavviihm5v1e"]
 
-[ext_resource path="res://scripts/Enemy/enemy.gd" type="Script" id=1]
-[ext_resource path="res://sprites/rectangle.png" type="Texture" id=2]
+[ext_resource type="Script" uid="uid://vnfwnb5esqwn" path="res://scripts/Enemy/enemy.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://uacmwn6msgql" path="res://sprites/rectangle.png" id="2"]
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="RectangleShape2D" id="1"]
+size = Vector2(32, 32)
 
-custom_solver_bias = 0.0
-extents = Vector2( 16, 16 )
-_sections_unfolded = [ "Resource" ]
-
-[node name="Enemy" type="Area2D" groups=[
-"enemy",
-]]
-
-input_pickable = true
-gravity_vec = Vector2( 0, 1 )
+[node name="Enemy" type="Area2D" groups=["enemy"]]
 gravity = 98.0
-linear_damp = 0.1
-angular_damp = 1.0
-audio_bus_override = false
-audio_bus_name = "Master"
-script = ExtResource( 1 )
-health = 1
-velocity = Vector2( 0, 150 )
+script = ExtResource("1")
+velocity = Vector2(0, 150)
 
-[node name="sprite" type="Sprite" parent="." index="0"]
+[node name="sprite" type="Sprite2D" parent="."]
+texture = ExtResource("2")
 
-texture = ExtResource( 2 )
-_sections_unfolded = [ "Offset" ]
+[node name="shape" type="CollisionShape2D" parent="."]
+shape = SubResource("1")
 
-[node name="shape" type="CollisionShape2D" parent="." index="1"]
-
-shape = SubResource( 1 )
-
-[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="." index="2"]
-
-rect = Rect2( -10, -10, 20, 20 )
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 
 [connection signal="area_entered" from="." to="." method="_on_Enemy_area_entered"]
-
-[connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
-
-
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]

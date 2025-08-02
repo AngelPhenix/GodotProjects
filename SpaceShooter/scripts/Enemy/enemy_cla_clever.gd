@@ -20,7 +20,7 @@ func _process(_delta):
 func shoot():
 	$shoot_time.start()
 	Audio_player.play("laser_enemy")
-	var laser = scn_laser.instance()
+	var laser = scn_laser.instantiate()
 	laser.set_position($cannon.get_global_position())
 	get_tree().get_nodes_in_group('world')[0].call_deferred("add_child", laser)
 

@@ -1,50 +1,34 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=5 format=3 uid="uid://ji73085342v2"]
 
-[ext_resource path="res://scenes/Enemy.tscn" type="PackedScene" id=1]
-[ext_resource path="res://scripts/Enemy/enemy_cla_clever.gd" type="Script" id=2]
-[ext_resource path="res://sprites/SelfMadeArt/enemy_clever.png" type="Texture" id=3]
+[ext_resource type="PackedScene" uid="uid://dxavviihm5v1e" path="res://scenes/Enemy.tscn" id="1"]
+[ext_resource type="Script" uid="uid://dgwmm56ge4a84" path="res://scripts/Enemy/enemy_cla_clever.gd" id="2"]
+[ext_resource type="Texture2D" uid="uid://dtd8g4128guxl" path="res://sprites/SelfMadeArt/enemy_clever.png" id="3"]
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="RectangleShape2D" id="1"]
+size = Vector2(44, 26)
 
-custom_solver_bias = 0.0
-extents = Vector2( 22, 13 )
-_sections_unfolded = [ "Resource" ]
-
-[node name="Enemy_clever" index="0" instance=ExtResource( 1 )]
-
-script = ExtResource( 2 )
-_sections_unfolded = [ "Transform" ]
+[node name="Enemy_clever" instance=ExtResource("1")]
+script = ExtResource("2")
 health = 3
-velocity = Vector2( 70, 70 )
+velocity = Vector2(70, 70)
 
 [node name="sprite" parent="." index="0"]
-
-scale = Vector2( 2, 2 )
-texture = ExtResource( 3 )
-_sections_unfolded = [ "Offset", "Transform" ]
+scale = Vector2(2, 2)
+texture = ExtResource("3")
 
 [node name="shape" parent="." index="1"]
+shape = SubResource("1")
 
-shape = SubResource( 1 )
-
-[node name="cannon" type="Position2D" parent="." index="2"]
-
-position = Vector2( 0, 13 )
-_sections_unfolded = [ "Transform" ]
+[node name="cannon" type="Marker2D" parent="." index="2"]
+position = Vector2(0, 13)
 
 [node name="shoot_time" type="Timer" parent="." index="3"]
-
 process_mode = 1
 wait_time = 1.5
-one_shot = false
-autostart = false
 
-[node name="VisibilityNotifier2D" parent="." index="4"]
-
-position = Vector2( 0.0924149, -2.72712 )
-scale = Vector2( 2.16805, 1.03537 )
-rect = Rect2( -10, -10, 20, 25 )
+[node name="VisibleOnScreenNotifier2D" parent="." index="4"]
+position = Vector2(0.0924149, -2.72712)
+scale = Vector2(2.16805, 1.03537)
+rect = Rect2(-10, -10, 20, 25)
 
 [connection signal="timeout" from="shoot_time" to="." method="_on_timer_timeout"]
-
-

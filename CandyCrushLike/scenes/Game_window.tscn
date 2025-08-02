@@ -29,7 +29,6 @@ texture = ExtResource( 1 )
 [node name="bot_ui" parent="." instance=ExtResource( 3 )]
 
 [node name="grid" type="Node2D" parent="."]
-editor/display_folded = true
 script = ExtResource( 4 )
 width = 8
 height = 10
@@ -88,6 +87,7 @@ goal_string = "blue"
 goal_texture = ExtResource( 16 )
 max_needed = 20
 goal_string = "pink"
+
 [connection signal="pause_menu" from="bot_ui" to="Pause" method="_on_bot_ui_pause_menu"]
 [connection signal="check_goal" from="grid" to="top_ui" method="_on_grid_check_goal"]
 [connection signal="check_goal" from="grid" to="goal_holder" method="_on_grid_check_goal"]

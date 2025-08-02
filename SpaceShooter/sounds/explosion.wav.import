@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/explosion.wav-3b6b3677a752f01353ef5846b5b927e3.sample"
+type="AudioStreamWAV"
+uid="uid://bhfobdvxg7iis"
+path="res://.godot/imported/explosion.wav-3b6b3677a752f01353ef5846b5b927e3.sample"
 
 [deps]
 
 source_file="res://sounds/explosion.wav"
-dest_files=[ "res://.import/explosion.wav-3b6b3677a752f01353ef5846b5b927e3.sample" ]
+dest_files=["res://.godot/imported/explosion.wav-3b6b3677a752f01353ef5846b5b927e3.sample"]
 
 [params]
 
@@ -15,7 +16,9 @@ force/8_bit=false
 force/mono=false
 force/max_rate=false
 force/max_rate_hz=44100
-edit/trim=true
-edit/normalize=true
-edit/loop=false
-compress/mode=0
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

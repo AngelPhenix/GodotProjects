@@ -10,7 +10,7 @@ extents = Vector2( 7, 7 )
 [node name="Powerup" type="Area2D" index="0"]
 
 input_pickable = true
-gravity_vec = Vector2( 0, 1 )
+gravity_direction = Vector2( 0, 1 )
 gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
@@ -19,16 +19,16 @@ audio_bus_name = "Master"
 script = ExtResource( 1 )
 velocity = Vector2( 0, 200 )
 
-[node name="sprite" type="Sprite" parent="." index="0"]
+[node name="sprite" type="Sprite2D" parent="." index="0"]
 
 [node name="shape" type="CollisionShape2D" parent="." index="1"]
 
 shape = SubResource( 1 )
 
-[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="." index="2"]
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." index="2"]
 
 rect = Rect2( -10, -10, 20, 20 )
 
-[connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
 
 

@@ -1,10 +1,10 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://fonts/m5x7.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://fonts/m5x7.ttf" type="FontFile" id=1]
 [ext_resource path="res://scripts/ontop_score.gd" type="Script" id=2]
 
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="FontFile" id=1]
 
 size = 16
 use_mipmaps = false
@@ -25,20 +25,20 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 1.5 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 1.5 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath(".:rect_scale")
+tracks/1/path = NodePath(".:scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 1.5 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 1.5 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 0,
 "values": [ Vector2( 1, 1 ), Vector2( 3, 3 ) ]
 }
@@ -52,18 +52,18 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 16.0
-margin_bottom = 13.0
-rect_scale = Vector2( 2, 2 )
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
+offset_right = 16.0
+offset_bottom = 13.0
+scale = Vector2( 2, 2 )
+pivot_offset = Vector2( 0, 0 )
+clip_contents = false
 mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-custom_fonts/font = SubResource( 1 )
-custom_colors/font_color = Color( 0, 0.753906, 0.312164, 1 )
-custom_colors/font_color_shadow = Color( 0, 0.0888367, 0.160156, 1 )
+theme_override_fonts/font = SubResource( 1 )
+theme_override_colors/font_color = Color( 0, 0.753906, 0.312164, 1 )
+theme_override_colors/font_shadow_color = Color( 0, 0.0888367, 0.160156, 1 )
 text = "50"
 align = 1
 valign = 1

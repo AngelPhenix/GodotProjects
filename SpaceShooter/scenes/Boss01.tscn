@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://scripts/Enemy/boss01.gd" type="Script" id=1]
-[ext_resource path="res://sprites/SelfMadeArt/Boss01.png" type="Texture" id=2]
+[ext_resource path="res://sprites/SelfMadeArt/Boss01.png" type="Texture2D" id=2]
 
 [node name="Boss01" type="Area2D" groups=[
 "boss",
@@ -9,7 +9,7 @@
 
 position = Vector2( 90, -20 )
 input_pickable = true
-gravity_vec = Vector2( 0, 1 )
+gravity_direction = Vector2( 0, 1 )
 gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
@@ -17,38 +17,38 @@ collision_layer = 0
 audio_bus_override = false
 audio_bus_name = "Master"
 script = ExtResource( 1 )
-_sections_unfolded = [ "Collision", "Transform" ]
+_sections_unfolded = [ "Collision", "Transform3D" ]
 
-[node name="sprite" type="Sprite" parent="." index="0"]
+[node name="sprite" type="Sprite2D" parent="." index="0"]
 
 texture = ExtResource( 2 )
 
 [node name="shape" type="CollisionPolygon2D" parent="." index="1"]
 
 build_mode = 0
-polygon = PoolVector2Array( -89.9762, -24.7661, -89.9762, 9.13316, -82.4215, 9.13316, -81.9709, 17.7897, -72.8576, 17.9321, -73.2848, 8.81879, -42.2427, 8.81879, -42.1003, 18.9288, -32.8446, 18.3592, -32.7022, 8.534, -4.65044, 8.81879, -4.82929, 19.0319, 5.03241, 18.9288, 4.89001, 8.3916, 33.0842, 8.81879, 33.047, 18.5846, 41.927, 18.5846, 42.0551, 9.10357, 72.9547, 8.81879, 73.2395, 18.3592, 82.6376, 17.7897, 82.068, 8.67639, 90.0421, 8.96118, 89.6149, -24.644 )
+polygon = PackedVector2Array( -89.9762, -24.7661, -89.9762, 9.13316, -82.4215, 9.13316, -81.9709, 17.7897, -72.8576, 17.9321, -73.2848, 8.81879, -42.2427, 8.81879, -42.1003, 18.9288, -32.8446, 18.3592, -32.7022, 8.534, -4.65044, 8.81879, -4.82929, 19.0319, 5.03241, 18.9288, 4.89001, 8.3916, 33.0842, 8.81879, 33.047, 18.5846, 41.927, 18.5846, 42.0551, 9.10357, 72.9547, 8.81879, 73.2395, 18.3592, 82.6376, 17.7897, 82.068, 8.67639, 90.0421, 8.96118, 89.6149, -24.644 )
 
 [node name="cannnons" type="Node2D" parent="." index="2"]
 
 editor/display_folded = true
 
-[node name="laser_shoot01" type="Position2D" parent="cannnons" index="0"]
+[node name="laser_shoot01" type="Marker2D" parent="cannnons" index="0"]
 
 position = Vector2( -77.5162, 17.4231 )
 
-[node name="laser_shoot02" type="Position2D" parent="cannnons" index="1"]
+[node name="laser_shoot02" type="Marker2D" parent="cannnons" index="1"]
 
 position = Vector2( 77.541, 17.5269 )
 
-[node name="laser_middle" type="Position2D" parent="cannnons" index="2"]
+[node name="laser_middle" type="Marker2D" parent="cannnons" index="2"]
 
 position = Vector2( 0.0175304, 17.5398 )
 
-[node name="laser_beam01" type="Position2D" parent="cannnons" index="3"]
+[node name="laser_beam01" type="Marker2D" parent="cannnons" index="3"]
 
 position = Vector2( -37.5051, 17.515 )
 
-[node name="laser_beam02" type="Position2D" parent="cannnons" index="4"]
+[node name="laser_beam02" type="Marker2D" parent="cannnons" index="4"]
 
 position = Vector2( 37.5482, 17.5333 )
 

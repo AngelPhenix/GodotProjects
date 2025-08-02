@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/laser_enemy.wav-9358b36bdc7592c53040d38a26b68cfa.sample"
+type="AudioStreamWAV"
+uid="uid://ciil51yqdiust"
+path="res://.godot/imported/laser_enemy.wav-9358b36bdc7592c53040d38a26b68cfa.sample"
 
 [deps]
 
 source_file="res://sounds/laser_enemy.wav"
-dest_files=[ "res://.import/laser_enemy.wav-9358b36bdc7592c53040d38a26b68cfa.sample" ]
+dest_files=["res://.godot/imported/laser_enemy.wav-9358b36bdc7592c53040d38a26b68cfa.sample"]
 
 [params]
 
@@ -15,7 +16,9 @@ force/8_bit=false
 force/mono=false
 force/max_rate=false
 force/max_rate_hz=44100
-edit/trim=true
-edit/normalize=true
-edit/loop=false
-compress/mode=0
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

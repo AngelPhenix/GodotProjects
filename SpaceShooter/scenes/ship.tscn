@@ -1,90 +1,50 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=3 uid="uid://naq1g0c6maxa"]
 
-[ext_resource path="res://scripts/ship.gd" type="Script" id=1]
-[ext_resource path="res://sprites/SelfMadeArt/player_ship01.png" type="Texture" id=2]
-[ext_resource path="res://sprites/shield.png" type="Texture" id=3]
-[ext_resource path="res://animations/fade_in.tres" type="Animation" id=4]
+[ext_resource type="Script" uid="uid://bwvwkbddhmtdq" path="res://scripts/ship.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://dxhnah8n2vri5" path="res://sprites/SelfMadeArt/player_ship01.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://bovei2bnmlam0" path="res://sprites/shield.png" id="3"]
+[ext_resource type="Animation" path="res://animations/fade_in.tres" id="4"]
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="RectangleShape2D" id="1"]
+size = Vector2(10, 30)
 
-custom_solver_bias = 0.0
-extents = Vector2( 5, 15 )
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ky8oh"]
+_data = {
+&"fade_in": ExtResource("4")
+}
 
-[node name="Ship" type="Area2D" groups=[
-"ship",
-]]
-
-self_modulate = Color( 1, 1, 1, 0.509804 )
-input_pickable = true
-gravity_vec = Vector2( 0, 1 )
+[node name="Ship" type="Area2D" groups=["ship"]]
+self_modulate = Color(1, 1, 1, 0.509804)
 gravity = 98.0
-linear_damp = 0.1
-angular_damp = 1.0
-audio_bus_override = false
-audio_bus_name = "Master"
-script = ExtResource( 1 )
-_sections_unfolded = [ "Collision" ]
+script = ExtResource("1")
 
-[node name="sprite" type="Sprite" parent="." index="0"]
+[node name="sprite" type="Sprite2D" parent="."]
+texture = ExtResource("2")
 
-texture = ExtResource( 2 )
+[node name="collisionbox" type="CollisionShape2D" parent="."]
+shape = SubResource("1")
 
-[node name="collisionbox" type="CollisionShape2D" parent="." index="1"]
-
-shape = SubResource( 1 )
-
-[node name="shoot_time" type="Timer" parent="." index="2"]
-
+[node name="shoot_time" type="Timer" parent="."]
 process_mode = 1
 wait_time = 0.25
-one_shot = false
-autostart = false
 
-[node name="ds_time" type="Timer" parent="." index="3"]
-
+[node name="ds_time" type="Timer" parent="."]
 process_mode = 1
 wait_time = 5.0
-one_shot = false
-autostart = false
 
-[node name="ult_time" type="Timer" parent="." index="4"]
-
+[node name="ult_time" type="Timer" parent="."]
 process_mode = 1
 wait_time = 5.0
-one_shot = false
-autostart = false
 
-[node name="shield" type="Sprite" parent="." index="5"]
+[node name="shield" type="Sprite2D" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+texture = ExtResource("3")
 
-editor/display_folded = true
-self_modulate = Color( 1, 1, 1, 0 )
-texture = ExtResource( 3 )
-
-[node name="anim" type="AnimationPlayer" parent="shield" index="0"]
-
-root_node = NodePath("..")
-autoplay = ""
-playback_process_mode = 1
-playback_default_blend_time = 0.0
-playback_speed = 1.0
-anims/fade_in = ExtResource( 4 )
-blend_times = [  ]
-
-[node name="tween" type="Tween" parent="." index="6"]
-
-repeat = false
-playback_process_mode = 1
-playback_speed = 1.0
-playback/active = false
-playback/repeat = false
-playback/speed = 1.0
+[node name="anim" type="AnimationPlayer" parent="shield"]
+libraries = {
+&"": SubResource("AnimationLibrary_ky8oh")
+}
 
 [connection signal="timeout" from="shoot_time" to="." method="_on_shoot_time_timeout"]
-
 [connection signal="timeout" from="ds_time" to="." method="_on_ds_time_timeout"]
-
 [connection signal="timeout" from="ult_time" to="." method="_on_ult_time_timeout"]
-
-[connection signal="tween_completed" from="tween" to="." method="_on_tween_tween_completed"]
-
-

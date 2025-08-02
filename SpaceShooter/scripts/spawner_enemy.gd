@@ -11,14 +11,14 @@ func _ready():
 	spawn()
 
 func spawn():
-	$spawn_timer.wait_time = rand_range(0.4, 0.9)
+	$spawn_timer.wait_time = randf_range(0.4, 0.9)
 	$spawn_timer.start()
 	var game_width = get_viewport().get_visible_rect().size.x
 	randomize()
-	var enemy = enemies[randi() % enemies.size()].instance()
+	var enemy = enemies[randi() % enemies.size()].instantiate()
 	var half_x_enemy_sprite = enemy.get_node("sprite").texture.get_size().x/2
 	var position = Vector2()
-	position.x = rand_range(0+half_x_enemy_sprite, game_width-half_x_enemy_sprite)
+	position.x = randf_range(0+half_x_enemy_sprite, game_width-half_x_enemy_sprite)
 	position.y = 0-half_x_enemy_sprite
 	enemy.set_position(position)
 	$container.add_child(enemy)
@@ -28,13 +28,13 @@ func _on_spawn_timer_timeout():
 		spawn()
 	else:
 		$spawn_timer.stop()
-		var warning = scn_warning.instance()
+		var warning = scn_warning.instantiate()
 		warning.position = Vector2(90,150)
 		get_tree().get_nodes_in_group("world")[0].add_child(warning)
-		warning.connect("warning_done", self, "spawn_boss")
+		warning.connect("warning_done", Callable(self, "spawn_boss"))
 
 func spawn_boss():
-	var boss = scn_boss.instance()
+	var boss = scn_boss.instantiate()
 	boss.set_position(Vector2(get_viewport().get_visible_rect().size.x/2, -20))
 	$container.add_child(boss)
 

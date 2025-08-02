@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://Scripts/Enemy.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/NewEnemy.gd" type="Script" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
+[ext_resource path="res://Scenes/Projectile.tscn" type="PackedScene" id=3]
 
 [node name="A DELETE" type="Node"]
 
@@ -11,6 +12,7 @@ script = ExtResource( 1 )
 __meta__ = {
 "_edit_group_": true
 }
+projectile_scene = ExtResource( 3 )
 
 [node name="Sprite" type="Sprite" parent="Enemy"]
 texture = ExtResource( 2 )

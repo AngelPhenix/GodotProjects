@@ -3,7 +3,7 @@ extends Area2D
 # Connects signal coming from ship when ultimate laser timer is done
 func _ready():
 	var ship = get_tree().get_nodes_in_group('ship')[0]
-	ship.connect("ult_finished", self, "_on_Ship_ult_finished")
+	ship.connect("ult_finished", Callable(self, "_on_Ship_ult_finished"))
 	$anim.play("spawn")
 
 # When enemies hit : oneshots them

@@ -1,6 +1,6 @@
-extends Sprite
+extends Sprite2D
 
-export var velocity = Vector2()
+@export var velocity = Vector2()
 
 # Gets stars moving from top to bottom at velocity speed
 # If disappear from screen, go back to top of the three stars sprite

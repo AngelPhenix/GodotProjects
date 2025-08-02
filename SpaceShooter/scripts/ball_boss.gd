@@ -18,7 +18,7 @@ func _physics_process(delta):
 	position += faced_direction * speed * delta
 
 func create_flare():
-	var flare = scn_flare.instance()
+	var flare = scn_flare.instantiate()
 	flare.set_position(get_position())
 	get_tree().get_nodes_in_group("world")[0].add_child(flare)
 

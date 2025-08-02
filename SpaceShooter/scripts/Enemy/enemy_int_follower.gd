@@ -1,6 +1,6 @@
 extends Area2D
 
-var health = 2 setget set_health
+var health = 2: set = set_health
 
 const scn_explosion = preload("res://scenes/Explosion.tscn")
 const scn_powerup_heal = preload("res://scenes/Powerup_health.tscn")
@@ -37,31 +37,31 @@ func set_health(new_health):
 		emit_signal("got_killed")
 
 func score_label(score):
-	var score_display = scn_label.instance()
+	var score_display = scn_label.instantiate()
 	score_display.text = str("+", score)
 	score_display.set_position(get_global_position())
 	get_tree().get_nodes_in_group('world')[0].add_child(score_display)
 
 # Creates an explosion at self position
 func create_explosion():
-	var explosion = scn_explosion.instance()
+	var explosion = scn_explosion.instantiate()
 	explosion.set_position(get_global_position())
 	#explosion.global_position = global_position
 	get_tree().get_nodes_in_group('world')[0].add_child(explosion)
 
 # 5% shootrate chance / 10% heal chance / 3% ult chance
 func create_powerup():
-	var rdm_seed = floor(rand_range(0,100))
+	var rdm_seed = floor(randf_range(0,100))
 	if(rdm_seed >= 0 && rdm_seed <= 4):
-		var shoot_boost = scn_powerup_shoot.instance()
+		var shoot_boost = scn_powerup_shoot.instantiate()
 		shoot_boost.set_position(get_global_position())
 		get_tree().get_nodes_in_group('world')[0].add_child(shoot_boost)
 	if(rdm_seed >= 5 && rdm_seed <= 14):
-		var heal_boost = scn_powerup_heal.instance()
+		var heal_boost = scn_powerup_heal.instantiate()
 		heal_boost.set_position(get_global_position())
 		get_tree().get_nodes_in_group('world')[0].add_child(heal_boost)
 	if(rdm_seed >= 15 && rdm_seed <= 17):
-		var ult_boost = scn_powerup_ulti.instance()
+		var ult_boost = scn_powerup_ulti.instantiate()
 		ult_boost.set_position(get_global_position())
 		get_tree().get_nodes_in_group('world')[0].add_child(ult_boost)
 

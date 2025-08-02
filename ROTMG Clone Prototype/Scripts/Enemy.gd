@@ -38,5 +38,5 @@ func spawn_projectile(enemy_pos: Vector2, direction: Vector2, wave: bool = false
 
 
 func _on_Timer_timeout():
-	shoot_in_circle()
-#	shoot_in_wave()
+#	shoot_in_circle()
+	shoot_in_wave()

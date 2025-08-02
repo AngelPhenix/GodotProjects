@@ -1,21 +1,21 @@
 extends Area2D
 
 # Health = 4 (Like the sprites of the health bar is)
-var health = 4 setget set_health
+var health = 4: set = set_health
 var max_health = health * 2
-var is_double_shooting = false setget double_shooting
-var is_ultimate = false setget ultimate
+var is_double_shooting = false: set = double_shooting
+var is_ultimate = false: set = ultimate
 var is_shooting = true
 var motion = Vector2()
 
-onready var scn_laser = preload("res://scenes/Laser_ship.tscn")
-onready var scn_explosion = preload("res://scenes/Explosion.tscn")
-onready var scn_flash = preload("res://scenes/Flash.tscn")
-onready var scn_ultimate = preload("res://scenes/Ultimate_laser.tscn")
-onready var scn_fire_reactor = preload("res://scenes/Fire_reactor.tscn")
-onready var ship_ultimate_sprite = preload("res://sprites/SelfMadeArt/player_ship01_ulti.png")
-onready var ship_sprite = preload("res://sprites/SelfMadeArt/player_ship01.png")
-onready var ship_slowmotion = preload("res://sprites/SelfMadeArt/player_ship01_slow.png")
+@onready var scn_laser = preload("res://scenes/Laser_ship.tscn")
+@onready var scn_explosion = preload("res://scenes/Explosion.tscn")
+@onready var scn_flash = preload("res://scenes/Flash.tscn")
+@onready var scn_ultimate = preload("res://scenes/Ultimate_laser.tscn")
+@onready var scn_fire_reactor = preload("res://scenes/Fire_reactor.tscn")
+@onready var ship_ultimate_sprite = preload("res://sprites/SelfMadeArt/player_ship01_ulti.png")
+@onready var ship_sprite = preload("res://sprites/SelfMadeArt/player_ship01.png")
+@onready var ship_slowmotion = preload("res://sprites/SelfMadeArt/player_ship01_slow.png")
 
 # Connected to spr_health.gd (built-in). Emmited when health is changed
 signal health_changed
@@ -79,7 +79,7 @@ func set_health(new_value):
 	# Got hit
 	if new_value < health:
 		Audio_player.play("hit_ship")
-		get_tree().get_nodes_in_group("world")[0].add_child(scn_flash.instance())
+		get_tree().get_nodes_in_group("world")[0].add_child(scn_flash.instantiate())
 	# Going from 4 to 5 HP (Shield up)
 	if health == 4 and new_value == 5:
 		$shield/anim.play("fade_in")
@@ -113,14 +113,14 @@ func double_shooting(new_value):
 
 # Spawns lasers at the given position using the main node in the Laser_ship scene
 func create_laser(pos):
-	var laser = scn_laser.instance()
+	var laser = scn_laser.instantiate()
 	laser.set_position(pos)
 	get_tree().get_nodes_in_group('world')[0].call_deferred('add_child', laser)
 	# return laser to be used in shoot() if double_shooting
 	return laser
 
 func add_fire_reactor(pos):
-	var fire_reactor = scn_fire_reactor.instance()
+	var fire_reactor = scn_fire_reactor.instantiate()
 	fire_reactor.set_position(pos)
 	add_child(fire_reactor)
 
@@ -130,7 +130,7 @@ func remove_fire_reactor():
 
 # Adds explosion scene to the root node of the game
 func create_explosion():
-	var explosion = scn_explosion.instance()
+	var explosion = scn_explosion.instantiate()
 	explosion.set_position(get_position())
 	get_tree().get_nodes_in_group('world')[0].add_child(explosion)
 
@@ -144,7 +144,7 @@ func ultimate(new_value):
 
 func fire_ultimate():
 	$sprite.texture = ship_ultimate_sprite
-	var ultimate = scn_ultimate.instance()
+	var ultimate = scn_ultimate.instantiate()
 	ultimate.set_position(Vector2(0,-15))
 	call_deferred("add_child", ultimate)
 
@@ -166,9 +166,9 @@ func level_finished():
 	$collisionbox.queue_free()
 	$shoot_time.queue_free()
 	set_physics_process(false)
-	$tween.interpolate_property(self, "position:y", global_position.y, -$sprite.texture.get_height(), 1.5 ,Tween.TRANS_EXPO, Tween.EASE_IN)
-	$tween.start()
+	#$tween.interpolate_property(self, "position:y", global_position.y, -$sprite.texture.get_height(), 1.5 ,Tween.TRANS_EXPO, Tween.EASE_IN)
+	#$tween.start()
 
 func _on_tween_tween_completed(_object, _key):
-	yield(get_tree().create_timer(5),"timeout")
-	get_tree().change_scene("res://stages/Stage_Game.tscn")
+	await get_tree().create_timer(5).timeout
+	get_tree().change_scene_to_file("res://stages/Stage_Game.tscn")

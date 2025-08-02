@@ -5,7 +5,7 @@ var phasetwo = false
 var phasethree = false
 var phasefour = false
 
-var health = 100 setget health_changed
+var health = 100: set = health_changed
 var velocity = Vector2()
 
 const scn_laser = preload("res://scenes/Laser_enemy.tscn")
@@ -17,7 +17,7 @@ signal level_done
 
 func _ready():
 	var player = get_tree().get_nodes_in_group("ship")[0]
-	connect("level_done", player, "level_finished")
+	connect("level_done", Callable(player, "level_finished"))
 	collision_mask = 0
 
 func _physics_process(delta):
@@ -29,7 +29,7 @@ func _physics_process(delta):
 			velocity.y = 0
 			in_position = true
 			collision_layer = 1
-			yield(get_tree().create_timer(0.5), "timeout")
+			await get_tree().create_timer(0.5).timeout
 			phase_one()
 
 func health_changed(new_value):
@@ -52,7 +52,7 @@ func health_changed(new_value):
 		queue_free()
 
 func score_label(score):
-	var score_display = scn_label.instance()
+	var score_display = scn_label.instantiate()
 	score_display.text = str("+", score)
 	score_display.set_position(get_position())
 	get_tree().get_nodes_in_group('world')[0].add_child(score_display)
@@ -95,7 +95,7 @@ func phase_four():
 func shoot_laser_01():
 	$laser_shoot_01.start()
 	Audio_player.play("laser_enemy")
-	var laser01 = scn_laser.instance()
+	var laser01 = scn_laser.instantiate()
 	laser01.set_position($cannnons/laser_shoot01.get_global_position())
 	get_tree().get_nodes_in_group('world')[0].call_deferred("add_child", laser01)
 
@@ -103,7 +103,7 @@ func shoot_laser_01():
 func shoot_laser_02():
 	$laser_shoot_02.start()
 	Audio_player.play("laser_enemy")
-	var laser02 = scn_laser.instance()
+	var laser02 = scn_laser.instantiate()
 	laser02.set_position($cannnons/laser_shoot02.get_global_position())
 	get_tree().get_nodes_in_group('world')[0].call_deferred("add_child", laser02)
 
@@ -111,7 +111,7 @@ func shoot_laser_02():
 func shoot_laserbeam_01():
 	$laser_beams_01.start()
 	Audio_player.play("laser_enemy")
-	var beam01 = scn_laser.instance()
+	var beam01 = scn_laser.instantiate()
 	beam01.set_position($cannnons/laser_beam01.get_global_position())
 	get_tree().get_nodes_in_group('world')[0].call_deferred("add_child", beam01)
 
@@ -119,7 +119,7 @@ func shoot_laserbeam_01():
 func shoot_laserbeam_02():
 	$laser_beams_02.start()
 	Audio_player.play("laser_enemy")
-	var beam02 = scn_laser.instance()
+	var beam02 = scn_laser.instantiate()
 	beam02.set_position($cannnons/laser_beam02.get_global_position())
 	get_tree().get_nodes_in_group('world')[0].call_deferred("add_child", beam02)
 
@@ -127,7 +127,7 @@ func shoot_laserbeam_02():
 func shoot_middle():
 	$laser_middle.start()
 	Audio_player.play("laser_enemy")
-	var middle_laser = scn_ball.instance()
+	var middle_laser = scn_ball.instantiate()
 	middle_laser.set_position($cannnons/laser_middle.get_global_position())
 	get_tree().get_nodes_in_group('world')[0].call_deferred("add_child", middle_laser)
 
@@ -147,7 +147,7 @@ func _on_laser_middle_timeout():
 	shoot_middle()
 
 func create_explosion():
-	var explosion = scn_explosion.instance()
+	var explosion = scn_explosion.instantiate()
 	explosion.set_position(get_position())
 	get_tree().get_nodes_in_group('world')[0].add_child(explosion)
 

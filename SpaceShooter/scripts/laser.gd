@@ -1,11 +1,11 @@
 extends Area2D
 
-export var velocity = Vector2()
+@export var velocity = Vector2()
 const scn_flare = preload("res://scenes/Flare.tscn")
 
 func _ready():
 	create_flare()
-	var connection = connect("area_entered", self, "_on_area_enter")
+	var connection = connect("area_entered", Callable(self, "_on_area_enter"))
 	if connection == 0:
 		return
 
@@ -13,7 +13,7 @@ func _process(delta):
 	translate(velocity * delta)
 
 func create_flare():
-	var flare = scn_flare.instance()
+	var flare = scn_flare.instantiate()
 	flare.set_position(get_position())
 	get_tree().get_nodes_in_group("world")[0].add_child(flare)
 
