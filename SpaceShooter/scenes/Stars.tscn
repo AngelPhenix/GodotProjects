@@ -12,27 +12,27 @@
 texture = ExtResource("1")
 centered = false
 script = ExtResource("2")
-velocity = Vector2(0, 50)
+velocity = Vector2(0, 20)
 
 [node name="far_stars2" type="Sprite2D" parent="far_stars"]
 position = Vector2(0, -320)
 texture = ExtResource("1")
 centered = false
 script = ExtResource("2")
-velocity = Vector2(0, 50)
+velocity = Vector2(0, 20)
 
 [node name="close_stars" type="Node2D" parent="."]
-modulate = Color(1, 1, 1, 0.552471)
+modulate = Color(1, 1, 1, 0.2)
 
 [node name="close_stars1" type="Sprite2D" parent="close_stars"]
 texture = ExtResource("3")
 centered = false
 script = ExtResource("2")
-velocity = Vector2(0, 200)
+velocity = Vector2(0, 120)
 
 [node name="close_stars2" type="Sprite2D" parent="close_stars"]
 position = Vector2(0, -320)
 texture = ExtResource("3")
 centered = false
 script = ExtResource("2")
-velocity = Vector2(0, 200)
+velocity = Vector2(0, 120)

@@ -6,7 +6,7 @@
 [sub_resource type="RectangleShape2D" id="1"]
 
 [node name="Enemy_kamikaze" instance=ExtResource("1")]
-velocity = Vector2(0, 320)
+velocity = Vector2(0, 200)
 
 [node name="sprite" parent="." index="0"]
 scale = Vector2(0.75, 0.75)

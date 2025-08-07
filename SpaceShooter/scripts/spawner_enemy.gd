@@ -11,7 +11,7 @@ func _ready():
 	spawn()
 
 func spawn():
-	$spawn_timer.wait_time = randf_range(0.4, 0.9)
+	$spawn_timer.wait_time = randf_range(1, 2.5)
 	$spawn_timer.start()
 	var game_width = get_viewport().get_visible_rect().size.x
 	randomize()
@@ -24,7 +24,7 @@ func spawn():
 	$container.add_child(enemy)
 
 func _on_spawn_timer_timeout():
-	if get_tree().get_nodes_in_group('score')[0].score < 1500:
+	if get_tree().get_nodes_in_group('score')[0].score < 200:
 		spawn()
 	else:
 		$spawn_timer.stop()

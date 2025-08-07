@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://djgakgpiefo2w" path="res://scenes/Stars.tscn" id="1"]
 [ext_resource type="PackedScene" uid="uid://naq1g0c6maxa" path="res://scenes/Ship.tscn" id="2"]
-[ext_resource type="PackedScene" path="res://scenes/Spawner_enemy.tscn" id="3"]
+[ext_resource type="PackedScene" uid="uid://lsb0dolqx4ib" path="res://scenes/Spawner_enemy.tscn" id="3"]
 [ext_resource type="Texture2D" uid="uid://rkgxdp8krt1e" path="res://sprites/health.png" id="4"]
 [ext_resource type="Texture2D" uid="uid://dgs8gskqcn7qb" path="res://sprites/SelfMadeArt/score.png" id="5"]
 [ext_resource type="FontFile" uid="uid://cstv4jfpevm1" path="res://fonts/m5x7.ttf" id="6"]
