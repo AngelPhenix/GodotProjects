@@ -5,8 +5,10 @@ const scn_laser = preload("res://scenes/Laser_ball.tscn")
 var in_position = false
 
 func _physics_process(_delta):
+	super._physics_process(_delta)
+	
 	if global_position.y < 100:
-		velocity.y = 150
+		velocity.y = 90
 	else:
 		velocity.y = 0
 		global_rotation += 0.2

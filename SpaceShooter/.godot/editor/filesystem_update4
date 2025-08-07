@@ -1,13 +1,12 @@
 res://default_env.tres
 res://scenes/Enemy_rotating.tscn
+res://scripts/Enemy/enemy_int_rotating.gd
 res://stages/Stage_Menu.tscn
 res://scenes/Stars.tscn
-res://stages/Stage_Game.tscn
 res://scenes/Enemy_clever.tscn
 res://scenes/Enemy_follower.tscn
 res://scenes/Enemy_inversedU.tscn
 res://scenes/Enemy_kamikaze.tscn
 res://scenes/Enemy.tscn
-res://scripts/Enemy/enemy_int_rotating.gd
-res://scripts/spawner_enemy.gd
+res://stages/Stage_Game.tscn
 res://scenes/Ship.tscn

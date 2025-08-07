@@ -81,7 +81,6 @@ func _on_btn_menu_pressed():
 
 [node name="Ship" parent="." instance=ExtResource("2")]
 position = Vector2(88.0786, 280)
-audio_bus_name = &"Master"
 
 [node name="Spawner_enemy" parent="." instance=ExtResource("3")]
 

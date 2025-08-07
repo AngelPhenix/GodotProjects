@@ -11,7 +11,11 @@ script = ExtResource("2")
 velocity = Vector2(0, 0)
 
 [node name="sprite" parent="." index="0"]
+scale = Vector2(4, 4)
 texture = ExtResource("3")
+
+[node name="VisibleOnScreenNotifier2D" parent="." index="2"]
+scale = Vector2(1.7, 1.4)
 
 [node name="cannon" type="Marker2D" parent="." index="3"]
 position = Vector2(0, 7.45369)
