@@ -166,8 +166,8 @@ func level_finished():
 	$collisionbox.queue_free()
 	$shoot_time.queue_free()
 	set_physics_process(false)
-	#$tween.interpolate_property(self, "position:y", global_position.y, -$sprite.texture.get_height(), 1.5 ,Tween.TRANS_EXPO, Tween.EASE_IN)
-	#$tween.start()
+	var tween: Tween = get_tree().create_tween()
+	tween.tween_property(self, "position:y", -200, 4).set_trans(Tween.TRANS_EXPO)
 
 func _on_tween_tween_completed(_object, _key):
 	await get_tree().create_timer(5).timeout

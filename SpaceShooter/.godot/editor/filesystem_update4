@@ -1,11 +1,11 @@
 res://default_env.tres
-res://scenes/Stars.tscn
 res://scenes/Boss01.tscn
 res://stages/Stage_Game.tscn
-res://scenes/Spawner_enemy.tscn
+res://scenes/Stars.tscn
 res://scenes/Enemy_rotating.tscn
 res://scenes/Enemy_kamikaze.tscn
 res://scenes/Enemy.tscn
-res://scripts/spawner_enemy.gd
+res://scenes/Spawner_enemy.tscn
 res://scenes/Ship.tscn
-res://scripts/stars.gd
+res://scripts/ship.gd
+res://scripts/spawner_enemy.gd
